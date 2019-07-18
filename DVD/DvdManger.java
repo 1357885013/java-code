@@ -3,6 +3,8 @@ package DVD;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static java.util.Arrays.*;
+
 public class DvdManger {
     private byte initSize = 5;
     private byte step = 10;
@@ -60,7 +62,7 @@ public class DvdManger {
         Dvd dvd = new Dvd(name);
         ArrayList<String> a = new ArrayList<>();
         if (count == dvds.length)
-            dvds = Arrays.copyOf(dvds, dvds.length + step);
+            dvds = copyOf(dvds, dvds.length + step);
         dvds[count] = dvd;
         count++;
         return true;
@@ -70,7 +72,7 @@ public class DvdManger {
         int index = indexOf(name);
         if (index != -1) {
             if (dvds.length - count > step * 2)
-                dvds = Arrays.copyOf(dvds, dvds.length - step);
+                dvds = copyOf(dvds, dvds.length - step);
 
             dvds[index] = dvds[count - 1];
             count--;
