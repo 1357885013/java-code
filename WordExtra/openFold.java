@@ -1,15 +1,36 @@
-package myCode;
+package WordExtra;
 
+import javax.swing.*;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 public class openFold {
 
     public static void main(String[] args) throws IOException {
-        listDirectory(new File("F:\\JAVA\\tutorial"));
+
+
+        listDirectory(selectFold());
+    }
+
+    public static File selectFold() {
+        File dir = null;
+        JFileChooser jf = new JFileChooser();
+        //jf.setSelectedFile(new File("c:\\我的报表.xls"));
+        jf.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int value = jf.showSaveDialog(null);
+        jf.setFileHidingEnabled(false);
+        if (value == JFileChooser.APPROVE_OPTION) {
+            dir = jf.getSelectedFile();
+        }
+        return dir;
     }
 
     public static void listDirectory(File dir) throws IOException {
+
+
         if (!dir.exists())
             throw new IllegalArgumentException("目录：" + dir + "不存在.");
         if (!dir.isDirectory()) {
@@ -29,8 +50,26 @@ public class openFold {
                     //递归
                     listDirectory(file);
                 else
+                {
+                    wordExtra.extra(readFile(file));
                     System.out.println(file);
+                }
             }
         }
+    }
+    public static String readFile(File file)
+    {
+        String s = "";
+        try {
+            BufferedReader bufr = new BufferedReader(new FileReader(file));
+            String line = null;
+            while ((line = bufr.readLine()) != null) {
+                s+=(line+" ");
+            }
+            bufr.close();
+        } catch (IOException e2) {
+            throw new RuntimeException("打开异常");
+        }
+        return s;
     }
 }

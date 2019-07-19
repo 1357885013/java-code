@@ -1,5 +1,6 @@
 package WordExtra;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +14,12 @@ import java.io.*;
 public class TextNote {
     private Frame frame;
     private MenuBar menuBar;
-    private Menu menu, subMenu,menuExtra;
-    private MenuItem closeItem, openItem, saveItem, subItem1, subItem,beginExtra,endExtra;
+    private Menu menu, subMenu, menuExtra;
+    private MenuItem closeItem, openItem, openFoldItem, saveItem, subItem1, subItem, beginExtra, endExtra;
     private FileDialog openDialog, saveDialog;
+
     private TextArea textArea;
-    private File file;
+    private File file,dir;
 
     TextNote() {
         init();
@@ -38,6 +40,7 @@ public class TextNote {
 
         closeItem = new MenuItem("exit");
         openItem = new MenuItem("open");
+        openFoldItem = new MenuItem("open fold");
         saveItem = new MenuItem("save");
 
         subMenu = new Menu("new");
@@ -48,6 +51,7 @@ public class TextNote {
 
         menu.add(subMenu);
         menu.add(openItem);
+        menu.add(openFoldItem);
         menu.add(saveItem);
         menu.add(closeItem);
         menuBar.add(menu);
@@ -76,7 +80,8 @@ public class TextNote {
         beginExtra.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                wordExtra.begin(textArea);
+                wordExtra extra = new wordExtra();
+                extra.extra(textArea.getText());
             }
         });
 
@@ -125,6 +130,7 @@ public class TextNote {
                     return;
                 textArea.setText("");
                 file = new File(dirPath, fileName);
+                dir=null;
                 try {
                     BufferedReader bufr = new BufferedReader(new FileReader(file));
                     String line = null;
@@ -137,6 +143,22 @@ public class TextNote {
                     throw new RuntimeException("打开异常");
                 }
 
+            }
+        });
+
+        //打开目录
+        openFoldItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    openFold.listDirectory(openFold.selectFold());
+                    textArea.append(wordExtra.s.toString());
+                    System.out.println("done");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 
