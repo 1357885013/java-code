@@ -45,6 +45,69 @@ public class Sort {
         }
     }
 
+    public static void quickSort(int[] a) {
+        quickSortChild(a, 0, a.length - 1);
+    }
+
+    private static int[] quickSortChild(int[] arr, int start, int end) {
+        int pivot = arr[start];
+        int i = start;
+        int j = end;
+        while (i<j) {
+            while ((i<j)&&(arr[j]>pivot)) {
+                j--;
+            }
+            while ((i<j)&&(arr[i]<pivot)) {
+                i++;
+            }
+            if ((arr[i]==arr[j])&&(i<j)) {
+                i++;
+            } else {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        if (i-1>start) arr=quickSortChild(arr,start,i-1);
+        if (j+1<end) arr=quickSortChild(arr,j+1,end);
+        return (arr);
+    }
+
+
+    public static void countSort(int[] nums) {//计数排序
+        int max = nums[0];
+        for (int n : nums)
+            if (n > max)
+                max = n;
+
+        int[] count = new int[max + 1]; //存放数数结果
+
+        for (int n : nums) //数每个数出现几次
+            count[n]++;
+
+        for (int i = 1; i < count.length; i++) //算出每个数的排名
+            count[i] += count[i - 1];
+
+        int[] result = new int[nums.length]; //存放排序结果
+
+        for (int i = nums.length - 1; i >= 0; i--) { //根据排名导出排序结果
+            if (nums[i] != 0) {
+                int loc = count[nums[i]] - 1;
+                while (result[loc] != 0)
+                    loc--;
+
+                result[loc] = nums[i];
+            }
+        }
+        for (int i = 0; i < nums.length; i++) {//复制结果到数组参数里,数组给的是一个地址,改变这个地址不会影响到调用前的东西
+            nums[i] = result[i];
+        }
+    }
+
+    public static void bucketSort(int[] a) {
+
+    }
+
     public static void swap(int[] a, int l, int r) {
         int temp = a[l];
         a[l] = a[r];
