@@ -48,9 +48,8 @@ public class MyString {
         String sss = "helloworld";
         String s2 = "hello";
         String s3 = "world";
-        System.out.println(sss == "hello"+"world");
-        System.out.println(sss == s2+s3);
-
+        System.out.println(sss == "hello" + "world");
+        System.out.println(sss == s2 + s3);
     }
 
 
