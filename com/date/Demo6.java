@@ -1,5 +1,6 @@
 package com.date;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /*
@@ -14,15 +15,12 @@ public class Demo6 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Calendar c = Calendar.getInstance();
-		
-		c.set(Calendar.YEAR, 1988);
-		c.set(Calendar.MONTH, 2);
-		c.set(Calendar.DAY_OF_MONTH, 1);
-		
-		c.add(Calendar.DAY_OF_MONTH, -1);
-		
-		System.out.println(c.get(Calendar.DAY_OF_MONTH));
-	}
+		Calendar time = Calendar.getInstance();
 
+		time.set(1998,2,1);
+		time.add(Calendar.DAY_OF_MONTH,-1);
+
+		SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("dateFormat = " + dateFormat.format(time.getTime()));
+	}
 }

@@ -23,14 +23,17 @@ public class Demo3 {
 		System.out.println(c.get(Calendar.MONTH));
 		
 		System.out.println(c.get(Calendar.DAY_OF_MONTH));
-		
+		System.out.println(c.get(Calendar.HOUR));
+		System.out.println(c.get(Calendar.MINUTE));
+		System.out.println(c.get(Calendar.SECOND));
+
 		//设置日历中字段值
 		c.set(Calendar.YEAR, 2020);
 		
 		System.out.println(c.get(Calendar.YEAR));
 		
 		
-		c.add(Calendar.YEAR, 10);
+		//c.add(Calendar.MONTH, 10);
 		
 		System.out.println(c);
 		

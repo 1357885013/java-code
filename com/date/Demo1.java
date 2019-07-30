@@ -32,19 +32,14 @@ public class Demo1 {
 		
 		//指定日期模式
 		String pattern = "yyyy年MM月dd日 HH:mm:ss:S";
-				
 				//System
 		//创建日期格式化对象
 		SimpleDateFormat df = new SimpleDateFormat(pattern);
-		
 		//格式化日期
 		/*
 		 * public final String format(Date date)将一个 Date 格式化为日期/时间字符串
 		 */
-		
-		
-		
-		String result = df.format(date);
+		String result = df.format(1000000000000l);
 		System.out.println(result);
 	}
 
