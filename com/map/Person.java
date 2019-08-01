@@ -1,4 +1,4 @@
-package com.collection;
+package com.map;
 
 public class Person {
 	String name;
@@ -16,9 +16,16 @@ public class Person {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "name="+name+" age"+age;
+		return "[name="+name+" age="+age+"]";
 	}
-
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + age;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
