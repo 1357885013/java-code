@@ -29,10 +29,16 @@ public class Demo1 {
 		
 		
 		map.put("xiyangyang", "lanyangyang");
-		
-		
+
+		map.putIfAbsent("tom","rose`s mom");
+
+		System.out.println("map = " + map.remove("ja"));
+		System.out.println("map = " + map.remove("jack","r"));
+
+		System.out.println("map.replace(\"xiyangyang\",\"mmp\") = " + map.replace("xiyangyang", "mmp"));
 		System.out.println(map);
-		
+		System.out.println(map);
+
 		System.out.println(map.get("tom"));
 		
 	}

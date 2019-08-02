@@ -1,4 +1,4 @@
-package com.set;
+package myCode.set;
 
 public class Person /*implements Comparable*/ {
     String name;
