@@ -1,4 +1,4 @@
-package com.stream;
+package myCode.stream;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -16,7 +16,7 @@ import java.io.IOException;
  *
  * E:\1.mp4
  */
-public class Test2 {
+public class CopyFile {
 
     public static void main(String[] args) throws IOException {
         // TODO Auto-generated method stub

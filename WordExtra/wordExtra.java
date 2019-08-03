@@ -7,9 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class wordExtra {
-    public static Set<String> s;
+    public static Set<String> s=new TreeSet<>();
     public static void extra(String str) {
-        s = new TreeSet<>();
         Pattern words = Pattern.compile("((?:[^a-zA-Z])[a-z]{2,})|([A-Z][a-z]+)|([A-Z]{2,})");
         Pattern words1 = Pattern.compile("([A-Za-z]+)");
 

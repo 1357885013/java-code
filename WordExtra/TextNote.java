@@ -1,6 +1,5 @@
 package WordExtra;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,15 +12,13 @@ import java.io.*;
  */
 public class TextNote {
     private Frame frame;
-    private MenuBar menuBar;
-    private Menu menu, subMenu, menuExtra;
-    private MenuItem closeItem, openItem, openFoldItem, saveItem, subItem1, subItem, beginExtra, endExtra;
+    private MenuItem closeItem, openItem, openFoldItem, saveItem, subItem1, subItem, extraFile, extraFold, endExtra;
     private FileDialog openDialog, saveDialog;
 
     private TextArea textArea;
-    private File file,dir;
+    private File file, dir;
 
-    TextNote() {
+    private TextNote() {
         init();
     }
 
@@ -35,31 +32,33 @@ public class TextNote {
         frame.setBounds(300, 100, 800, 500);
         //frame.setLayout();
 
-        menuBar = new MenuBar();
-        menu = new Menu("file");
+        MenuBar menuBar = new MenuBar();
+        Menu menu = new Menu("file");
 
         closeItem = new MenuItem("exit");
         openItem = new MenuItem("open");
         openFoldItem = new MenuItem("open fold");
         saveItem = new MenuItem("save");
 
-        subMenu = new Menu("new");
+        Menu subMenu = new Menu("new");
         subItem1 = new MenuItem("Web Project");
         subItem = new MenuItem("Java Project");
         subMenu.add(subItem);
         subMenu.add(subItem1);
-
         menu.add(subMenu);
+
         menu.add(openItem);
         menu.add(openFoldItem);
         menu.add(saveItem);
         menu.add(closeItem);
         menuBar.add(menu);
 
-        menuExtra = new Menu("Extra words");
-        beginExtra = new MenuItem("begin extra words");
-        endExtra = new MenuItem("end extra words");
-        menuExtra.add(beginExtra);
+        Menu menuExtra = new Menu("Extra words");
+        extraFile = new MenuItem("extra file");
+        extraFold = new MenuItem("extra fold");
+        endExtra = new MenuItem("end extra");
+        menuExtra.add(extraFile);
+        menuExtra.add(extraFold);
         menuExtra.add(endExtra);
         menuBar.add(menuExtra);
 
@@ -76,12 +75,29 @@ public class TextNote {
     }
 
     private void myEvent() {
-
-        beginExtra.addActionListener(new ActionListener() {
+        //解析文件
+        extraFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 wordExtra extra = new wordExtra();
+                textArea.setRows(0);
+                textArea.append(openFold.readFile(openFold.selectFile(openDialog))+"\n");
+                wordExtra.s.clear();
                 extra.extra(textArea.getText());
+                textArea.append(wordExtra.s.toString()+"\n");
+            }
+        });
+        //解析目录
+        extraFold.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                wordExtra.s.clear();
+                File fold = openFold.selectFold();
+                textArea.append("Extra fold : "+fold.toString()+"\n");
+                int count = openFold.listDirectory(fold);
+                textArea.append(wordExtra.s.toString()+"\n");
+                textArea.append("words count = " + wordExtra.s.size()+"\n");
+                textArea.append("file count = " + count+"\n\n\n");
             }
         });
 
@@ -130,7 +146,7 @@ public class TextNote {
                     return;
                 textArea.setText("");
                 file = new File(dirPath, fileName);
-                dir=null;
+                dir = null;
                 try {
                     BufferedReader bufr = new BufferedReader(new FileReader(file));
                     String line = null;
@@ -151,14 +167,9 @@ public class TextNote {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                try {
-                    openFold.listDirectory(openFold.selectFold());
-                    textArea.append(wordExtra.s.toString());
-                    System.out.println("done");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                openFold.listDirectory(openFold.selectFold());
+                textArea.append(wordExtra.s.toString());
+                System.out.println("done");
             }
         });
 

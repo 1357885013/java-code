@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>方形环绕背景</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0
+        }
+
+        body {
+            --width: 256px;
+            background-color: black;
+        }
+
+        #photos {
+            width: calc(var(--width) * 2); /*宽度*/
+            height: calc(var(--width) * 2); /*高度*/
+            /*width: 256px;*/
+            /*height: 256px;*/
+            /*border: 1px solid #ccc; !*加一个灰色边框*!*/
+            margin: 160px auto; /*水平居中，高度距离顶部100px*/
+            transform-style: preserve-3d; /*设置3d环境*/
+            /*perspective: 800px; !*设置景深为800px*!*/
+        }
+
+        #photos img {
+            width: calc(var(--width) * 2);
+            height: calc(var(--width) * 2);
+            position: absolute;
+
+            /*box-shadow: 0 0 8px #eaeaea;*/
+            /*box-shadow: 1px -1px 6px #666;*/
+            /*border-radius: 4px;*/
+            cursor: pointer;
+        }
+
+        #photos img[alt="1"] {
+            transform: rotateY(0deg) translateZ(calc(var(--width)));
+        }
+
+        #photos img[alt="2"] {
+            transform: rotateY(90deg) translateZ(var(--width));
+        }
+
+        #photos img[alt="3"] {
+            transform: rotateY(180deg) translateZ(var(--width));
+        }
+
+        #photos img[alt="4"] {
+            transform: rotateY(270deg) translateZ(var(--width));
+        }
+
+        #photos img[alt="5"] {
+            transform: rotateX(90deg) translateZ(var(--width));
+        }
+
+        #photos img[alt="6"] {
+            transform: rotateX(-90deg) translateZ(var(--width));
+        }
+    </style>
+</head>
+<body>
+<div id="photos">
+    <img src="./background/panorama_0.png" alt="1"/>
+    <img src="./background/panorama_1.png" alt="2"/>
+    <img src="./background/panorama_2.png" alt="3"/>
+    <img src="./background/panorama_3.png" alt="4"/>
+    <img src="./background/panorama_4.png" alt="5"/>
+    <img src="./background/panorama_5.png" alt="6"/>
+</div>
+</body>
+<script type="application/javascript">
+    var photosDom = document.getElementById('photos');
+    //获取图片数组
+    var images = photosDom.getElementsByTagName('img');
+    //获取图片数量
+    var len = images.length;
+
+    //计算每张图片按Y轴旋转的角度 //下面语句是3D环绕相册。
+    // var deg = Math.floor(360 / len);
+    // for (var i = 0; i < len; i++) {
+    //     images[i].style = 'transform : rotateY(' + deg * i + 'deg) translateZ(380px)'; //deg前面不要加空格
+    // }
+
+    var x = 0;
+    setInterval(function () {
+        photosDom.style.transform = "rotateX(20deg) rotateY(" + (x++) * 0.2 + "deg)";
+    }, 30);
+
+    // photosDom.style.transform = "rotateX(-60deg) rotateY(40deg)";
+
+</script>
+</html>

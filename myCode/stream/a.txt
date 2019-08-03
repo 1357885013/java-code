@@ -1,0 +1,6 @@
+        input.read(bytes, 3, 5);//off 是指往byte存时的偏移，
+        System.out.print(new String(bytes,3,5));
+        input.read(bytes, 2, 8); //读取之前数组不清空。。。
+        System.out.print(new String(bytes,2,8));
+        input.read(bytes, 5, 5); //每次读取都记住了读取位置。
+        System.out.print(new String(bytes,5,5));
