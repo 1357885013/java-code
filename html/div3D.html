@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>trasform3D</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .container{
+            perspective: 400px;
+            transform-style: preserve-3d;
+        }
+        .container, .box{
+            width: 150px;
+            height: 80px;
+            margin: 10px auto;
+        }
+        .box{
+            backface-visibility: hidden;
+            transition: 1s;
+            transform-style: preserve-3d;
+            position: absolute;
+            text-align: center;
+        }
+        .box1,.box3,.box5{background-color: pink;}
+        .box2,.box4,.box6{background-color: red;}
+        .box2{transform: rotateX(-180deg);}
+        .box4{transform: rotateY(-180deg);}
+        .box5{transform-origin:left;}
+        .box6{transform-origin:right;}
+        span{
+            font-size: 20px;
+            line-height: 80px;
+        }
+        .container:hover .box1{transform: rotateX(180deg);}
+        .container:hover .box2{transform: rotateX(0deg);}
+        .container:hover .box3{transform: rotateY(180deg);}
+        .container:hover .box4{transform: rotateY(0deg);}
+        .container:hover .box5{transform: rotateZ(180deg);}
+        .container:hover .box6{transform: rotateZ(-180deg);}
+    </style>
+</head>
+<body>
+<div class="container" ontouchstart="this.classList.toggle('hover');">
+    <div class="box box1">
+        <span>front</span>
+    </div>
+    <div class="box box2">
+        <span>back</span>
+    </div>
+</div>
+<div class="container" ontouchstart="this.classList.toggle('hover');">
+    <div class="box box3">
+        <span>front</span>
+    </div>
+    <div class="box box4">
+        <span>back</span>
+    </div>
+</div>
+<div class="container" ontouchstart="this.classList.toggle('hover');">
+    <div class="box box6">
+        <span>back</span>
+    </div>
+    <div class="box box5">
+        <span>front</span>
+    </div>
+</div>
+</body>
+</html>

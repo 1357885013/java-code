@@ -9,31 +9,54 @@
             margin: 0
         }
 
+        html {
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
         body {
             --width: 256px;
             background-color: black;
         }
 
+        .wraper, .wraper-out {
+            width: calc(var(--width) * 2); /*宽度*/
+            height: calc(var(--width) * 2); /*高度*/
+            transform-style: preserve-3d; /*设置3d环境*/
+            margin: 160px auto; /*水平居中，高度距离顶部100px*/
+            transform: translate3d(0, 0, 100px);
+        }
+
+        .wraper-out {
+            perspective: 1000px;
+        }
+
+        .wraper {
+            transform: translate3d(0, 0, 1000px);
+        }
+
         #photos {
             width: calc(var(--width) * 2); /*宽度*/
             height: calc(var(--width) * 2); /*高度*/
-            /*width: 256px;*/
-            /*height: 256px;*/
-            /*border: 1px solid #ccc; !*加一个灰色边框*!*/
-            margin: 160px auto; /*水平居中，高度距离顶部100px*/
             transform-style: preserve-3d; /*设置3d环境*/
-            /*perspective: 800px; !*设置景深为800px*!*/
+            /*border: 1px solid #ccc; !*加一个灰色边框*!*/
+            /*perspective: 0px; !*设置景深为800px*!*/
+            /*prespective-origin:center;*/
+            backface-visibility: hidden;
         }
 
         #photos img {
             width: calc(var(--width) * 2);
             height: calc(var(--width) * 2);
             position: absolute;
-
+            top: 0;
+            left: 0;
             /*box-shadow: 0 0 8px #eaeaea;*/
             /*box-shadow: 1px -1px 6px #666;*/
             /*border-radius: 4px;*/
-            cursor: pointer;
+            /*cursor: pointer;*/
+            user-select: none;
+            dragable: false;
         }
 
         #photos img[alt="1"] {
@@ -62,13 +85,26 @@
     </style>
 </head>
 <body>
-<div id="photos">
-    <img src="./background/panorama_0.png" alt="1"/>
-    <img src="./background/panorama_1.png" alt="2"/>
-    <img src="./background/panorama_2.png" alt="3"/>
-    <img src="./background/panorama_3.png" alt="4"/>
-    <img src="./background/panorama_4.png" alt="5"/>
-    <img src="./background/panorama_5.png" alt="6"/>
+<div class="wraper-out">
+
+
+    <div class="wraper">
+        <div id="photos">
+<!--                <img src="./background/panorama_0.png" alt="1"/>-->
+<!--                <img src="./background/panorama_1.png" alt="2"/>-->
+<!--                <img src="./background/panorama_2.png" alt="3"/>-->
+<!--                <img src="./background/panorama_3.png" alt="4"/>-->
+<!--                <img src="./background/panorama_4.png" alt="5"/>-->
+<!--                <img src="./background/panorama_5.png" alt="6"/>-->
+
+            <img src="./background1/panorama_0.jpg" alt="1"/>
+            <img src="./background1/panorama_1.jpg" alt="2"/>
+            <img src="./background1/panorama_2.jpg" alt="3"/>
+            <img src="./background1/panorama_3.jpg" alt="4"/>
+            <img src="./background1/panorama_4.jpg" alt="5"/>
+            <img src="./background1/panorama_5.jpg" alt="6"/>
+        </div>
+    </div>
 </div>
 </body>
 <script type="application/javascript">
@@ -84,12 +120,76 @@
     //     images[i].style = 'transform : rotateY(' + deg * i + 'deg) translateZ(380px)'; //deg前面不要加空格
     // }
 
-    var x = 0;
-    setInterval(function () {
-        photosDom.style.transform = "rotateX(20deg) rotateY(" + (x++) * 0.2 + "deg)";
-    }, 30);
+    //自动旋转
+    // var x = 0;
+    // setInterval(function () {
+    //     photosDom.style.transform = "rotateX(20deg) rotateY(" + (x++) * 0.2 + "deg)";
+    // }, 30);
 
-    // photosDom.style.transform = "rotateX(-60deg) rotateY(40deg)";
+    // photosDom.style.transform = "rotateX(20deg) rotateY(40deg)";     //初始角度
 
+    var cube = document.querySelector("#photos");
+    var downX, downY, moveX, moveY, degX = 0, degY = 0, tempX, tempY;
+
+    cube.ondragstart = function (e) {
+        return false;
+    };//防止拖跑图片
+
+    window.onmousedown = function (e) {
+        e = e || event;
+        downX = e.clientX;
+        downY = e.clientY;
+        window.onmousemove = function (e) {
+            moveX = e.clientX - downX;
+            moveY = e.clientY - downY;
+
+            tempX = degX + moveX / 5;
+            tempY = degY - moveY / 5;
+            cube.style.transform = "rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
+        }
+    };
+    window.onmouseup = function (e) {
+        degX += moveX / 5;
+        degY -= moveY / 5;
+        window.onmousemove = null;
+    };
+
+    !function () {
+        var n = 1024;
+        var wraper = document.querySelector('.wraper');
+        var wraperOut = document.querySelector('.wraper-out');
+        wraperOut.style.perspective = n + 'px';
+        wraper.style.transform = "transformZ:"+n+"px";
+        window.onmousewheel = function (e) {
+            e = e || event;
+            if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件
+                if (e.wheelDelta > 0) { //当滑轮向上滚动时减小景深
+                    wraperOut.style.perspective = n- 20 + 'px';
+                    wraper.style.transform = "transformZ:"+n- 20+"px";
+                    if (n > 0) {
+                        n = n - 20;
+                    }
+                }
+                if (e.wheelDelta < 0) { //当滑轮向下滚动时增加景深
+                    wraperOut.style.perspective = n+ 20 + 'px';
+                    wraper.style.transform = "transformZ:"+n+ 20+"px";
+                    n += 20;
+                }
+            } else if (e.detail) {  //Firefox滑轮事件
+                if (e.detail > 0) {
+                    wraperOut.style.perspective = n- 20 + 'px';
+                    wraper.style.transform = "transformZ:"+n- 20+"px";
+                    if (n > 0) {
+                        n = n - 20;
+                    }
+                }
+                if (e.detail < 0) {
+                    wraperOut.style.perspective = n+ 20 + 'px';
+                    wraper.style.transform = "transformZ:"+n+ 20+"px";
+                    n += 20;
+                }
+            }
+        };
+    }();
 </script>
 </html>
