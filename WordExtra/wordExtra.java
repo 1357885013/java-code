@@ -1,5 +1,7 @@
 package WordExtra;
 
+import org.junit.Test;
+
 import java.awt.*;
 import java.util.Set;
 import java.util.TreeSet;

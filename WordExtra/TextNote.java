@@ -12,7 +12,7 @@ import java.io.*;
  */
 public class TextNote {
     private Frame frame;
-    private MenuItem closeItem, openItem, openFoldItem, saveItem, subItem1, subItem, extraFile, extraFold, endExtra;
+    private MenuItem closeItem, openItem, openFoldItem, saveItem, subItem1, subItem, extraFile, extraFold, extraTextArea, endExtra;
     private FileDialog openDialog, saveDialog;
 
     private TextArea textArea;
@@ -56,9 +56,11 @@ public class TextNote {
         Menu menuExtra = new Menu("Extra words");
         extraFile = new MenuItem("extra file");
         extraFold = new MenuItem("extra fold");
+        extraTextArea = new MenuItem("extra the content which in text area");
         endExtra = new MenuItem("end extra");
         menuExtra.add(extraFile);
         menuExtra.add(extraFold);
+        menuExtra.add(extraTextArea);
         menuExtra.add(endExtra);
         menuBar.add(menuExtra);
 
@@ -81,10 +83,10 @@ public class TextNote {
             public void actionPerformed(ActionEvent e) {
                 wordExtra extra = new wordExtra();
                 textArea.setRows(0);
-                textArea.append(openFold.readFile(openFold.selectFile(openDialog))+"\n");
+                textArea.append(openFold.readFile(openFold.selectFile(openDialog)) + "\n");
                 wordExtra.s.clear();
                 extra.extra(textArea.getText());
-                textArea.append(wordExtra.s.toString()+"\n");
+                textArea.append(wordExtra.s.toString() + "\n");
             }
         });
         //解析目录
@@ -93,14 +95,24 @@ public class TextNote {
             public void actionPerformed(ActionEvent e) {
                 wordExtra.s.clear();
                 File fold = openFold.selectFold();
-                textArea.append("Extra fold : "+fold.toString()+"\n");
+                textArea.append("Extra fold : " + fold.toString() + "\n");
                 int count = openFold.listDirectory(fold);
-                textArea.append(wordExtra.s.toString()+"\n");
-                textArea.append("words count = " + wordExtra.s.size()+"\n");
-                textArea.append("file count = " + count+"\n\n\n");
+                textArea.append(wordExtra.s.toString() + "\n");
+                textArea.append("words count = " + wordExtra.s.size() + "\n");
+                textArea.append("file count = " + count + "\n\n\n");
             }
         });
-
+        //解析文件
+        extraTextArea.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                wordExtra extra = new wordExtra();
+                textArea.setRows(0);
+                wordExtra.s.clear();
+                extra.extra(textArea.getText());
+                textArea.append(wordExtra.s.toString() + "\n");
+            }
+        });
         endExtra.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

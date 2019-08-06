@@ -29,6 +29,7 @@
 
         .wraper-out {
             perspective: 1000px;
+            filter: blur(9px);
         }
 
         .wraper {
@@ -90,12 +91,12 @@
 
     <div class="wraper">
         <div id="photos">
-<!--                <img src="./background/panorama_0.png" alt="1"/>-->
-<!--                <img src="./background/panorama_1.png" alt="2"/>-->
-<!--                <img src="./background/panorama_2.png" alt="3"/>-->
-<!--                <img src="./background/panorama_3.png" alt="4"/>-->
-<!--                <img src="./background/panorama_4.png" alt="5"/>-->
-<!--                <img src="./background/panorama_5.png" alt="6"/>-->
+<!--                            <img src="./background/panorama_0.png" alt="1"/>-->
+<!--                            <img src="./background/panorama_1.png" alt="2"/>-->
+<!--                            <img src="./background/panorama_2.png" alt="3"/>-->
+<!--                            <img src="./background/panorama_3.png" alt="4"/>-->
+<!--                            <img src="./background/panorama_4.png" alt="5"/>-->
+<!--                            <img src="./background/panorama_5.png" alt="6"/>-->
 
             <img src="./background1/panorama_0.jpg" alt="1"/>
             <img src="./background1/panorama_1.jpg" alt="2"/>
@@ -108,9 +109,10 @@
 </div>
 </body>
 <script type="application/javascript">
-    var photosDom = document.getElementById('photos');
+    var cube = document.querySelector("#photos");
     //获取图片数组
-    var images = photosDom.getElementsByTagName('img');
+    var images = cube.getElementsByTagName('img');
+
     //获取图片数量
     var len = images.length;
 
@@ -121,14 +123,12 @@
     // }
 
     //自动旋转
-    // var x = 0;
-    // setInterval(function () {
-    //     photosDom.style.transform = "rotateX(20deg) rotateY(" + (x++) * 0.2 + "deg)";
-    // }, 30);
+    var x = 0;
+    setInterval(function () {
+        cube.style.transform = "rotateX(12deg) rotateY(" + (x++) * 0.02 + "deg)";
+    }, 30);
 
     // photosDom.style.transform = "rotateX(20deg) rotateY(40deg)";     //初始角度
-
-    var cube = document.querySelector("#photos");
     var downX, downY, moveX, moveY, degX = 0, degY = 0, tempX, tempY;
 
     cube.ondragstart = function (e) {
@@ -143,14 +143,14 @@
             moveX = e.clientX - downX;
             moveY = e.clientY - downY;
 
-            tempX = degX + moveX / 5;
-            tempY = degY - moveY / 5;
+            tempX = degX - moveX / 5;
+            tempY = degY + moveY / 5;
             cube.style.transform = "rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
         }
     };
     window.onmouseup = function (e) {
-        degX += moveX / 5;
-        degY -= moveY / 5;
+        degX -= moveX / 5;
+        degY += moveY / 5;
         window.onmousemove = null;
     };
 
@@ -159,33 +159,33 @@
         var wraper = document.querySelector('.wraper');
         var wraperOut = document.querySelector('.wraper-out');
         wraperOut.style.perspective = n + 'px';
-        wraper.style.transform = "transformZ:"+n+"px";
+        wraper.style.transform = "transformZ:" + n + "px";
         window.onmousewheel = function (e) {
             e = e || event;
             if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件
                 if (e.wheelDelta > 0) { //当滑轮向上滚动时减小景深
-                    wraperOut.style.perspective = n- 20 + 'px';
-                    wraper.style.transform = "transformZ:"+n- 20+"px";
+                    wraperOut.style.perspective = n - 20 + 'px';
+                    wraper.style.transform = "transformZ:" + n - 20 + "px";
                     if (n > 0) {
                         n = n - 20;
                     }
                 }
                 if (e.wheelDelta < 0) { //当滑轮向下滚动时增加景深
-                    wraperOut.style.perspective = n+ 20 + 'px';
-                    wraper.style.transform = "transformZ:"+n+ 20+"px";
+                    wraperOut.style.perspective = n + 20 + 'px';
+                    wraper.style.transform = "transformZ:" + n + 20 + "px";
                     n += 20;
                 }
             } else if (e.detail) {  //Firefox滑轮事件
                 if (e.detail > 0) {
-                    wraperOut.style.perspective = n- 20 + 'px';
-                    wraper.style.transform = "transformZ:"+n- 20+"px";
+                    wraperOut.style.perspective = n - 20 + 'px';
+                    wraper.style.transform = "transformZ:" + n - 20 + "px";
                     if (n > 0) {
                         n = n - 20;
                     }
                 }
                 if (e.detail < 0) {
-                    wraperOut.style.perspective = n+ 20 + 'px';
-                    wraper.style.transform = "transformZ:"+n+ 20+"px";
+                    wraperOut.style.perspective = n + 20 + 'px';
+                    wraper.style.transform = "transformZ:" + n + 20 + "px";
                     n += 20;
                 }
             }
