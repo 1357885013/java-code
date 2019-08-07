@@ -10,13 +10,24 @@
         }
 
         html {
-            box-sizing: border-box;
-            overflow: hidden;
+            /*box-sizing: border-box;*/
+            /*overflow: hidden;*/
         }
 
         body {
+
+            /*background-color: black;*/
+        }
+
+        #background {
             --width: 256px;
-            background-color: black;
+            filter: blur(9px);
+
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            z-index: -1;
         }
 
         .wraper, .wraper-out {
@@ -27,9 +38,9 @@
             transform: translate3d(0, 0, 100px);
         }
 
+
         .wraper-out {
             perspective: 1000px;
-            filter: blur(9px);
         }
 
         .wraper {
@@ -40,10 +51,8 @@
             width: calc(var(--width) * 2); /*宽度*/
             height: calc(var(--width) * 2); /*高度*/
             transform-style: preserve-3d; /*设置3d环境*/
-            /*border: 1px solid #ccc; !*加一个灰色边框*!*/
-            /*perspective: 0px; !*设置景深为800px*!*/
             /*prespective-origin:center;*/
-            backface-visibility: hidden;
+            /*backface-visibility: hidden;*/
         }
 
         #photos img {
@@ -52,67 +61,77 @@
             position: absolute;
             top: 0;
             left: 0;
-            /*box-shadow: 0 0 8px #eaeaea;*/
-            /*box-shadow: 1px -1px 6px #666;*/
-            /*border-radius: 4px;*/
-            /*cursor: pointer;*/
             user-select: none;
-            dragable: false;
         }
 
-        #photos img[alt="1"] {
+        #photos img:first-child {
             transform: rotateY(0deg) translateZ(calc(var(--width)));
         }
 
-        #photos img[alt="2"] {
+        #photos img:nth-child(2) {
             transform: rotateY(90deg) translateZ(var(--width));
         }
 
-        #photos img[alt="3"] {
+        #photos img:nth-child(3) {
             transform: rotateY(180deg) translateZ(var(--width));
         }
 
-        #photos img[alt="4"] {
+        #photos img:nth-child(4) {
             transform: rotateY(270deg) translateZ(var(--width));
         }
 
-        #photos img[alt="5"] {
+        #photos img:nth-child(5) {
             transform: rotateX(90deg) translateZ(var(--width));
         }
 
-        #photos img[alt="6"] {
+        #photos img:nth-child(6) {
             transform: rotateX(-90deg) translateZ(var(--width));
         }
     </style>
 </head>
 <body>
-<div class="wraper-out">
+<div id="background">
+    <div class="wraper-out">
 
 
-    <div class="wraper">
-        <div id="photos">
-<!--                            <img src="./background/panorama_0.png" alt="1"/>-->
-<!--                            <img src="./background/panorama_1.png" alt="2"/>-->
-<!--                            <img src="./background/panorama_2.png" alt="3"/>-->
-<!--                            <img src="./background/panorama_3.png" alt="4"/>-->
-<!--                            <img src="./background/panorama_4.png" alt="5"/>-->
-<!--                            <img src="./background/panorama_5.png" alt="6"/>-->
+        <div class="wraper">
+            <div id="photos">
+                <!--                            <img src="./background/panorama_0.png" alt="1"/>-->
+                <!--                            <img src="./background/panorama_1.png" alt="2"/>-->
+                <!--                            <img src="./background/panorama_2.png" alt="3"/>-->
+                <!--                            <img src="./background/panorama_3.png" alt="4"/>-->
+                <!--                            <img src="./background/panorama_4.png" alt="5"/>-->
+                <!--                            <img src="./background/panorama_5.png" alt="6"/>-->
 
-            <img src="./background1/panorama_0.jpg" alt="1"/>
-            <img src="./background1/panorama_1.jpg" alt="2"/>
-            <img src="./background1/panorama_2.jpg" alt="3"/>
-            <img src="./background1/panorama_3.jpg" alt="4"/>
-            <img src="./background1/panorama_4.jpg" alt="5"/>
-            <img src="./background1/panorama_5.jpg" alt="6"/>
+                <img src="./background1/panorama_0.jpg" alt="1"/>
+                <img src="./background1/panorama_1.jpg" alt="2"/>
+                <img src="./background1/panorama_2.jpg" alt="3"/>
+                <img src="./background1/panorama_3.jpg" alt="4"/>
+                <img src="./background1/panorama_4.jpg" alt="5"/>
+                <img src="./background1/panorama_5.jpg" alt="6"/>
+            </div>
         </div>
     </div>
+</div>
+<div>
+    <div>
+        <h1>旋转师坐标轴也跟着转</h1>
+        <h1>背景</h1>
+        <h1>大家好 ，大家好</h1>
+        <h1>大家好 ，大家好</h1>
+        <h1>大家好 ，大家好</h1>
+        <h1>大家好 ，大家好</h1>
+        <!--        <img src="./background1/panorama_0.jpg"/>-->
+
+    </div>
+
 </div>
 </body>
 <script type="application/javascript">
     var cube = document.querySelector("#photos");
     //获取图片数组
     var images = cube.getElementsByTagName('img');
-
+    var mouseDown = false; //鼠标按下停止旋转。
     //获取图片数量
     var len = images.length;
 
@@ -122,20 +141,29 @@
     //     images[i].style = 'transform : rotateY(' + deg * i + 'deg) translateZ(380px)'; //deg前面不要加空格
     // }
 
-    //自动旋转
-    var x = 0;
-    setInterval(function () {
-        cube.style.transform = "rotateX(12deg) rotateY(" + (x++) * 0.02 + "deg)";
-    }, 30);
 
-    // photosDom.style.transform = "rotateX(20deg) rotateY(40deg)";     //初始角度
-    var downX, downY, moveX, moveY, degX = 0, degY = 0, tempX, tempY;
+    //初始角度
+    // photosDom.style.transform = "rotateX(20deg) rotateY(40deg)";
 
     cube.ondragstart = function (e) {
         return false;
     };//防止拖跑图片
 
+    var downX, downY, moveX, moveY, degX = 0, degY = 0, tempX, tempY;
+    var rotateFactor = 0.2;//自动旋转的系数
+
+    //自动旋转
+    setInterval(function () {
+        if (!mouseDown) {
+            degX += (Math.random()-0.5)*rotateFactor;
+            degY += (Math.random()-0.5)*rotateFactor;
+            cube.style.transform = "rotateX(" + degY + "deg) rotateY(" + degX + "deg)";
+        }
+    }, 30);
+
+    //拖拽旋转
     window.onmousedown = function (e) {
+        mouseDown = true;
         e = e || event;
         downX = e.clientX;
         downY = e.clientY;
@@ -149,6 +177,7 @@
         }
     };
     window.onmouseup = function (e) {
+        mouseDown = false;
         degX -= moveX / 5;
         degY += moveY / 5;
         window.onmousemove = null;

@@ -2,14 +2,15 @@ package WordExtra;
 
 import org.junit.Test;
 
-import java.awt.*;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 class wordExtra {
     public static Set<String> s=new TreeSet<>();
+    @Test
     public static void extra(String str) {
         Pattern words = Pattern.compile("((?:[^a-zA-Z])[a-z]{2,})|([A-Z][a-z]+)|([A-Z]{2,})");
         Pattern words1 = Pattern.compile("([A-Za-z]+)");
