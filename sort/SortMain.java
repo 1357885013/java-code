@@ -27,7 +27,7 @@ public class SortMain {
 //        Sort.bubbleSort(a);//time:230 5456
 //        Sort.selectionSort(a);//time:76 1841
 //        Sort.countSort(a);//time:11 15
-        Sort.quickSort(a);
+        Sort.quickSort(a);//time:18
         Time = System.currentTimeMillis() - Time; //TIME
         System.out.println(Time + " 1/Millis s"); //TIME
         pri(a);
