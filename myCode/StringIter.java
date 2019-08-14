@@ -1,4 +1,4 @@
-package wait;
+package myCode;
 
 public class StringIter {
     public static int countUpcase = 0, countLowCase = 0;
