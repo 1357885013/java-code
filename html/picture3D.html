@@ -37,7 +37,7 @@
         }
 
         #photos img[alt="1"] {
-            transform: rotateY(0deg) translateZ(calc(var(--width)));
+            transform: rotateY(0deg) translateZ(var(--width));
         }
 
         #photos img[alt="2"] {
@@ -86,7 +86,7 @@
 
     var x = 0;
     setInterval(function () {
-        photosDom.style.transform = "rotateX(20deg) rotateY(" + (x++) * 0.2 + "deg)";
+        photosDom.style.transform = "rotateX(10deg) rotateY(" + (x++) * 0.4 + "deg)";
     }, 30);
 
     // photosDom.style.transform = "rotateX(-60deg) rotateY(40deg)";
