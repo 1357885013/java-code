@@ -17,6 +17,7 @@ public class CopyOfMyWindow implements Runnable {
         while (true) {
             try {
                 l.lock();
+                
                 if (a >= 1) {
                     System.out.println(Thread.currentThread().getName() + "ÂôµÚ" + a + "ÕÅÆ±");
                     a--;
