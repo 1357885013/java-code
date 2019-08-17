@@ -9,23 +9,16 @@ import java.util.TimerTask;
  * Timer() 
           创建一个新计时器。
  */
-public class Demo2 {
+public class MyTimer {
 
 	public static void main(String[] args) {
 
-		Timer t = new Timer();
-		t.schedule(new TimerTask() {
+		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
-				System.out.println("fuck you !");
+				System.out.println("fds");
 			}
-		}, 1200l,2000);
-
-
-
-		
-		
-		
+		}, 1000, 1000);
 	}
 
 }
