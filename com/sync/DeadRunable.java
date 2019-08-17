@@ -1,4 +1,4 @@
-package com.others;
+package com.sync;
 /*
  * 线程的死锁现象
  * 	

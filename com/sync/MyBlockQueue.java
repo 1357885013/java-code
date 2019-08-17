@@ -3,8 +3,21 @@ package com.sync;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+class Setup {
+    public static void main(String[] args) {
+        BlockingQueue q = new LinkedBlockingQueue();
+        Producer p = new Producer(q);
+        Consumer c1 = new Consumer(q);
+        Consumer c2 = new Consumer(q);
+        new Thread(p).start();
+        new Thread(c1).start();
+        new Thread(c2).start();
+    }
+}
+
 class Producer implements Runnable {
     private final BlockingQueue queue;
+    int i = 1;
 
     Producer(BlockingQueue q) {
         queue = q;
@@ -21,7 +34,7 @@ class Producer implements Runnable {
     }
 
     Object produce() {
-        return 1;
+        return i++;
     }
 }
 
@@ -47,14 +60,4 @@ class Consumer implements Runnable {
     }
 }
 
-class Setup {
-    public static void main(String[] args) {
-        BlockingQueue q = new LinkedBlockingQueue();
-        Producer p = new Producer(q);
-        Consumer c1 = new Consumer(q);
-        Consumer c2 = new Consumer(q);
-        new Thread(p).start();
-        new Thread(c1).start();
-        new Thread(c2).start();
-    }
-}
+

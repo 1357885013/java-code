@@ -1,4 +1,4 @@
-package com.others;
+package com.sync;
 
 /*
  * 线程通信
