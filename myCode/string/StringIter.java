@@ -1,4 +1,4 @@
-package myCode;
+package myCode.string;
 
 public class StringIter {
     public static int countUpcase = 0, countLowCase = 0;

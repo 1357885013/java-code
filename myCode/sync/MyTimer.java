@@ -1,4 +1,4 @@
-package com.sync;
+package myCode.sync;
 
 import java.util.Timer;
 import java.util.TimerTask;

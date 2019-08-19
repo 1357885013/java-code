@@ -1,4 +1,4 @@
-package com.sync;
+package myCode.sync;
 
 /*
  * 线程通信

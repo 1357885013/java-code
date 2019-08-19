@@ -1,4 +1,4 @@
-package com.sync;
+package myCode.sync;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
