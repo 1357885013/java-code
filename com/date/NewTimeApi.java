@@ -27,7 +27,7 @@ public class NewTimeApi {
      */
     @Test
     public void testDTF() {
-        LocalTime lt1 = LocalTime.of(23, 59, 59);
+        LocalTime lt1 = LocalTime.of(22, 59, 59);
         LocalTime lt2 = LocalTime.of(0, 0, 0);
         Duration du = Duration.between(lt2, lt1);
         System.out.println(du.toHours());//相差的小时数 可能是负数
