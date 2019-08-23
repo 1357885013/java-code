@@ -1,4 +1,4 @@
-package com.lamda;
+package myCode;
 
 public class DefaultMethodOfInterface {
 
