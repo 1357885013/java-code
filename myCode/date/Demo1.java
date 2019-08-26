@@ -1,4 +1,4 @@
-package com.date;
+package myCode.date;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,7 +17,7 @@ public class Demo1 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Date date = new Date();
-		
+
 		System.out.println(date);
 		
 		

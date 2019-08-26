@@ -1,4 +1,4 @@
-package com.date;
+package myCode.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +14,6 @@ import java.util.Date;
 public class Demo2 {
 
 	public static void main(String[] args) throws ParseException {
-		// TODO Auto-generated method stub
 		String pattern = "yyyy年MM月dd日 HH:mm:ss:S";
 		SimpleDateFormat df = new SimpleDateFormat(pattern);
 		String result = df.format(1000000000000L);    //这里传date类型和long都行。

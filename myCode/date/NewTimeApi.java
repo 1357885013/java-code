@@ -1,4 +1,4 @@
-package com.date;
+package myCode.date;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +8,12 @@ import java.util.Arrays;
 
 public class NewTimeApi {
 
+    @Test
+    public void testClock(){
+        Clock c = Clock.system(ZoneId.systemDefault());
+        Instant instant = c.instant();
+        System.out.println("instant.toString() = " + instant.toString());
+    }
     /**
      * 时区类
      */
@@ -17,8 +23,6 @@ public class NewTimeApi {
                 "当前时区时间" + ZonedDateTime.now() +
                         "\n构造时区时间" + ZonedDateTime.of(LocalDateTime.now(), ZoneId.of("Asia/Shanghai")) +
                         "\n所有可用的时区id" + ZoneId.getAvailableZoneIds()
-
-
         );
     }
 
@@ -35,11 +39,28 @@ public class NewTimeApi {
     }
 
     /**
+     * 计算时间差
+     */
+    @Test
+    public void testDTTF() {
+        LocalDateTime lt1 = LocalDateTime.of(2009,Month.JULY,22,12, 59, 59);
+        LocalDateTime lt2 = LocalDateTime.of(2019,Month.JULY,22,22, 59, 58);
+        Duration du = Duration.between(lt2, lt1);
+        System.out.println("du.toDays() = " + du.toDays());
+        System.out.println("du.toHours() = " + du.toHours());
+        System.out.println("du.toMinutes() = " + du.toMinutes());
+        System.out.println("du.getSeconds() = " + du.getSeconds());
+        System.out.println("du.toMillis() = " + du.toMillis());
+        System.out.println("du.toNanos() = " + du.toNanos());
+    }
+
+    /**
      * 格式化时间
      */
     @Test
     public void testFormat() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH:mm:ss E");
+
         LocalDateTime ldt = LocalDateTime.now();
         String strDate = ldt.format(dtf);
         System.out.println(strDate);
@@ -63,6 +84,7 @@ public class NewTimeApi {
     public void testYear() {
         Year y = Year.now();
         System.out.println("天数：" + y.length() + ";是否闰年:" + y.isLeap() + ";年份值:" + y.getValue());
+
     }
 
     /**
@@ -96,6 +118,7 @@ public class NewTimeApi {
     public void testLocalDateTime() {
         LocalDateTime ldt = LocalDateTime.now();
         System.out.println("当前日期时间" + ldt + "；年：" + ldt.getYear() + "；月：" + ldt.getMonthValue() + "；日：" + ldt.getDayOfMonth() + "；时间" + ldt.getHour() + "：" + ldt.getMinute() + "：" + ldt.getSecond() + "." + ldt.getNano());
+
     }
 
     /**

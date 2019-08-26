@@ -1,4 +1,4 @@
-package com.date;
+package myCode.date;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,10 +13,9 @@ import java.util.Date;
 public class Demo3 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		//当前系统时间
 		Calendar c = Calendar.getInstance();
-		
+
 		//获取日历中的年的值
 		System.out.println(c.get(Calendar.YEAR));
 		
@@ -32,7 +31,7 @@ public class Demo3 {
 		
 		System.out.println(c.get(Calendar.YEAR));
 		
-		
+
 		//c.add(Calendar.MONTH, 10);
 		
 		System.out.println(c);
