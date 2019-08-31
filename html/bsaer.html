@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: auto;
+            padding: 0;
+        }
+        #wrap{
+            width: 800px;
+            margin: 50px auto;
+        }
+        #myCanvas{
+            float: left;
+            background: lightskyblue;
+        }
+        #show {
+            width: 300px;
+            height: 300px;
+            /*background: url(texture.jpg) no-repeat;*/
+            /*display: inline-block;*/
+            float: left;
+        }
+        p{
+            margin-left: 20px;
+            color: #3b9cfb;
+            height: 20px;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        #show p:first-child {
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <div id="show">
+        <p>起点的坐标为:</p>
+        <p>终点的坐标为:</p>
+        <p>控制点1的坐标为:</p>
+        <p>控制点2的坐标为:</p>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+    var positions = document.getElementsByTagName('p');
+    //起点
+    var rec1 = {
+        x:121,
+        y:222,
+        r:10,
+        color:'red'
+    }
+
+    //终点
+    var rec2 = {
+        x:433,
+        y:427,
+        r:10,
+        color:'coral'
+    }
+
+    //控制点
+    var rec3 = {
+        x:187,
+        y:22,
+        r:10,
+        color:'greenyellow'
+    }
+
+    var rec4 = {
+        x:414,
+        y:263,
+        r:10,
+        color:'dodgerblue'
+    }
+
+    //将4个对象放入数组
+    var arr = [rec1,rec2,rec3,rec4];
+
+    //创建小圆绘制函数
+    function drawCir (obj) {
+        context.beginPath();
+
+        context.fillStyle = obj.color;
+        context.arc(obj.x,obj.y,10,0,Math.PI * 2);
+        context.fill();
+        context.closePath();
+    }
+
+    var img = new Image();
+    img.src = 'girls.jpg';
+
+    //创建线绘制函数
+    function drawBez (obj1,obj2,obj3,obj4) {
+
+        //context.drawImage(img,250,0,500,450,0,0,canvas.width,canvas.height);
+
+        context.beginPath();
+
+        context.strokeStyle = '#FFFACD';
+        context.moveTo(obj1.x,obj1.y);
+        context.lineTo(obj3.x,obj3.y);
+
+        context.stroke();
+        context.closePath();
+
+        context.beginPath();
+
+        context.strokeStyle = '#FFFACD';
+        context.moveTo(obj2.x,obj2.y);
+        context.lineTo(obj4.x,obj4.y);
+
+        context.stroke();
+        context.closePath();
+
+        //贝塞尔曲线
+        context.save();
+        context.beginPath();
+
+        context.strokeStyle = 'black';
+        context.lineWidth = 5;
+        context.moveTo(obj1.x,obj1.y);  //起点
+        context.bezierCurveTo(obj3.x,obj3.y,obj4.x,obj4.y,obj2.x,obj2.y);   //控制点1  控制点2  终点
+
+        context.stroke();
+        context.closePath();
+        context.restore();
+    }
+
+    //实例化控制点 和 线
+    drawBez(arr[0],arr[1],arr[2],arr[3]);
+
+    for (var i in arr) {
+        drawCir(arr[i]);
+    }
+
+    positions[0].innerHTML = '起点的坐标为: (' + arr[0].x + ',' + arr[0].y + ')';
+    positions[1].innerHTML = '终点的坐标为: (' + arr[1].x + ',' + arr[1].y + ')';
+    positions[2].innerHTML = '控制点1的坐标为: (' + arr[2].x + ',' + arr[2].y + ')';
+    positions[3].innerHTML = '控制点2的坐标为: (' + arr[3].x + ',' + arr[3].y + ')';
+    var n = 0;
+
+    //自由移动控制点
+    canvas.onmousedown = function (e) {
+        var e = e || window.event;
+
+        var cliX = e.clientX - canvas.offsetLeft;
+        var cliY = e.clientY - canvas.offsetTop;
+
+        for (var i in arr) {
+            drawCir(arr[i]);
+
+            if (context.isPointInPath(cliX,cliY)) {
+                n = i;
+
+                var disX = cliX - arr[n].x;
+                var disY = cliY - arr[n].y;
+
+                canvas.onmousemove = function (e) {
+                    console.log('a')
+                    context.clearRect(0,0,canvas.width,canvas.height);
+
+                    var e = e || window.event;
+
+                    var x = e.clientX - canvas.offsetLeft - disX;
+                    var y = e.clientY - canvas.offsetTop - disY;
+
+                    arr[n].x = x;
+                    arr[n].y = y;
+
+                    drawBez(arr[0],arr[1],arr[2],arr[3]);
+
+                    for (var i in arr) {
+                        drawCir(arr[i]);
+                    }
+
+                    positions[0].innerHTML = '起点的坐标为: (' + arr[0].x + ',' + arr[0].y + ')';
+                    positions[1].innerHTML = '终点的坐标为: (' + arr[1].x + ',' + arr[1].y + ')';
+                    positions[2].innerHTML = '控制点1的坐标为: (' + arr[2].x + ',' + arr[2].y + ')';
+                    positions[3].innerHTML = '控制点2的坐标为: (' + arr[3].x + ',' + arr[3].y + ')';
+                }
+            }
+        }
+    }
+
+    canvas.onmouseup = function () {
+        canvas.onmousemove = null;
+    }
+</script>
+</html>
