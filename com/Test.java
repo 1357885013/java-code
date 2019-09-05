@@ -10,4 +10,10 @@ public class Test {
         System.out.println( 1024 << 1);
         System.out.println( 1024 << 2);
     }
+
+    @org.junit.Test
+    public void test2(){
+        int[] a = new int[]{1,2,3,4};
+        System.out.println("a.getClass().getTypeName() = " + a.getClass().getTypeName());
+    }
 }
