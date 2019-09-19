@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="vue.js"></script>
+    <script src="element.js" type="application/javascript"></script>
+    <link href="element-ui.css" rel="stylesheet"/>
+    <!--        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+    <!--        <script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
+    <title>vue</title>
+</head>
+<body>
+
+<div id="class" v-bind:class="[activeClass, errorClass]"
+     v-bind:style="[baseStyles, {fontSize:'16px'}]"
+      v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">123<h1 v-show=false>Hello!</h1>
+
+</div>
+<script>
+    new Vue({
+        el: "#class",
+        data: {
+            activeColor: 'red',
+            fontSize: 30,
+            activeClass: 'active',
+            errorClass: 'text-danger',
+            baseStyles: {color: 'red'}
+        }
+    })
+
+</script>
+
+</body>
+</html>
