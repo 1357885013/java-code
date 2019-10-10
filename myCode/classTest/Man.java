@@ -1,27 +1,27 @@
-package classTest;
+package myCode.classTest;
 
 public class Man {
     public static int count;
     public String name;
-    public String sex;
-    public double tall;
+    private String sex;
+    private double tall;
 
     public Man(String name, String sex, double d) {
         this.name = name;
         this.sex = sex;
         this.tall = d;
-        this.count++;
+        count++;
     }
 
     public Man(String name, String sex) {
         this.name = name;
         this.sex = sex;
-        this.count++;
+        count++;
     }
 
     public Man(String name) {
         this.name = name;
-        this.count++;
+        count++;
     }
 
     public void eat() {

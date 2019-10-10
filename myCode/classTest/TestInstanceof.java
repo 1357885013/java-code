@@ -1,6 +1,6 @@
-package classTest;
+package myCode.classTest;
 
-public class muti {
+public class TestInstanceof {
     public static void main(String[] args) {
         show(new Cat()); // 以 Cat 对象调用 show 方法
         show(new Dog()); // 以 Dog 对象调用 show 方法

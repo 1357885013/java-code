@@ -1,6 +1,6 @@
-package classTest;
+package myCode.classTest;
 
-public class ClassTest {
+public class TestStaticVar {
 
     public static void main(String[] arg) {
         Man man1 = new Man("name1", "male", 1.7);
@@ -10,5 +10,3 @@ public class ClassTest {
     }
 
 }
-	
-

@@ -6,11 +6,7 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
-/*
- * Stream：流式编程  简化集合操作
- *
- *
- */
+/*  Stream：流式编程  简化集合操作 */
 public class MyStream {
 
     public static void main(String[] args) {
@@ -24,11 +20,9 @@ public class MyStream {
         int aaa = 10;//局部变量在匿名内部类中可以使用，但是默认就是final
         TreeSet<Person> set = new TreeSet<Person>(
                 (p1, p2) -> {
-
                     int result;
                     result = p1.getAge() - p2.getAge();
                     if (result == 0) {
-
                         result = p1.getName().compareTo(p2.getName());
                     }
 
@@ -60,7 +54,6 @@ public class MyStream {
         list2.stream().map((a) -> a.getAge()).forEach(age -> System.out.println(age));
         list2.stream().map(Person::getAge).forEach(System.out::println);     //方法引用，method reference？？？  todo
 
-
         list2.stream().parallel().forEach(System.out::println); //并行计算。 只有一个findAny()的结果会受影响。
 
         Stream.of("one", "two", "three", "four")
@@ -74,13 +67,11 @@ public class MyStream {
         System.out.println("-----");
         list2.stream().sorted((a, b) -> a.getAge() - b.getAge()).limit(3).forEach(p -> System.out.println(p));
 
-
         String[] words = {"Hello", "World"};
         Arrays.stream(words)     //imported
                 .map(word -> word.split(""))
                 .forEach(((String[] ss) -> System.out.println(Arrays.toString(ss))));
         System.out.println("-----");
-
 
         Arrays.stream(words)
                 .flatMap(s -> Stream.of(s.split("")))
@@ -136,15 +127,14 @@ public class MyStream {
         // stream.map((p) -> p.getName()).forEach((s) -> System.out.println(s));
 
     }
-
 }
- class Person {
+
+class Person {
     private String name;
     private int age;
 
     public Person() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public Person(String name, int age) {
@@ -156,15 +146,12 @@ public class MyStream {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public int getAge() {
         return age;
     }
-
     public void setAge(int age) {
         this.age = age;
     }
@@ -201,6 +188,4 @@ public class MyStream {
             return false;
         return true;
     }
-
-
 }

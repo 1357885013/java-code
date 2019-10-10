@@ -17,15 +17,15 @@ public class regex {
         String line = "This order was placed for QT3000! OK?";
         pattern = "((\\D*)(\\d+)(.*))";
 
-        // 创建 Pattern 对象
-        // 现在创建 matcher 对象
         Matcher m = Pattern.compile(pattern).matcher(line);
 
         if (m.find()) {
-            System.out.println("Found value: " + m.group(0));
-            System.out.println("Found value: " + m.group(1));
-            System.out.println("Found value: " + m.group(2));
-            System.out.println("Found value: " + m.group(3));
+            System.out.println("Found value 0: " + m.group(0));
+            System.out.println("Found value 1: " + m.group(1));
+            System.out.println("Found value 2: " + m.group(2));
+            System.out.println("Found value 3: " + m.group(3));
+            System.out.println("Found value 4: " + m.group(4));
+            System.out.println("Found value 5: " + m.group(5));
         } else {
             System.out.println("NO MATCH");
         }

@@ -1,16 +1,13 @@
 package myCode;
 
-/*
- * StringBuffer:线程安全的可变字符序列,一个类似于 String 的字符串缓冲区
- * 
- * 
+/* StringBuffer:线程安全的可变字符序列,一个类似于 String 的字符串缓冲区
+ *
  * 构造方法
  * 	StringBuffer() 
           构造一个其中不带字符的字符串缓冲区，其初始容量为 16 个字符  自动扩容
           
     StringBuffer(String str) :String---StringBuffer
           构造一个字符串缓冲区，并将其内容初始化为指定的字符串内容。
- * 
  */
 public class MyStringBuffer {
 
@@ -19,11 +16,11 @@ public class MyStringBuffer {
 
         System.out.println("new StringBuffer(\"abcdefg\").insert(7,'h') = " + new StringBuffer("abcdefg").insert(7, 'h'));
 
-        System.out.println("new StringBuffer(\"abcdefg\").delete(1,3) = " + new StringBuffer("abcdefg").delete(1, 3));
+        System.out.println("new StringBuffer(\"abcdefg\").delete(1,4) = " + new StringBuffer("abcdefg").delete(1, 4));
         System.out.println("new StringBuffer(\"abcdefg\").append(true).deleteCharAt(2) = " + new StringBuffer("abcdefg").append(true).deleteCharAt(2));
 
-        System.out.println("new StringBuffer(\"abcdefg\").replace(1, 6, \"hate\") = " + new StringBuffer("abcdefg").replace(1, 2, "xxxx"));
-        System.out.println("new StringBuffer(\"abcdefg\").replace(1, 6, \"hate\") = " + new StringBuffer("abcdefg").replace(1, 6, "xxxx"));
+        System.out.println("new StringBuffer(\"abcdefg\").replace(1, 2, \"xxxx\") = " + new StringBuffer("abcdefg").replace(1, 2, "xxxx"));
+        System.out.println("new StringBuffer(\"abcdefg\").replace(1, 6, \"xxxx\") = " + new StringBuffer("abcdefg").replace(1, 6, "xxxx"));
 
         System.out.println("new StringBuffer(\"abcdefg\").reverse() = " + new StringBuffer("abcdefg").reverse());
 
