@@ -2,13 +2,18 @@ package myCode;
 
 class arrInverse {
     public static void main(String[] args) {
+       run();
+    }
+    public static void run(){
         int[] arr = {12, 56, 25, 89, 73};
 
         arrInverse(arr);
         printArr(arr);
     }
+    public arrInverse() {
+    }
 
-    private static void arrInverse(int[] a) {
+    public static void arrInverse(int[] a) {
         int len = a.length;
 
         for (int i = 0; i < len / 2; i++) {

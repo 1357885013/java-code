@@ -15,11 +15,11 @@ class array {
         int arr3[][];
         int arr4[][];
 
-        //arr4 = {{2,3},{4,6},{7},{12,45,67},{100}};
+//        arr4 = {{2,3},{4,6},{7},{12,45,67},{100}};//error
         int[][] arr = new int[3][4];
         arr = new int[3][4];
         arr = new int[3][];
-        //arr = new int[][2];
+//        arr = new int[][2];//error
         arr = new int[][]{{1, 2}, {2}, {3}};
 
 
@@ -57,5 +57,10 @@ class array {
                 System.out.println(crr[i][j]);
             }
         }
+
+
+        for(int[] i :crr)
+            for(int j:i)
+                System.out.println(j);
     }
 }
