@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>自定义查询条件</title>
+  <style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+<p>选择框按钮 鼠标悬停事件  background:rgb(238,238,239) </p>
+<p>难点在弹出框的位置上 . </p>
+<div style="pointer-events: auto; position: relative; z-index: 0;">
+  <div>
+    <div style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh;"></div>
+    <div style="position: fixed; left: 883.031px; top: 15px; pointer-events: none;">
+      <div style="width: 43px; height: 24px;"></div>
+      <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
+        <div style="position: relative; top: 100%; pointer-events: auto;">
+          <div style="display: flex; align-items: center; position: relative; flex-direction: column-reverse; transform-origin: 50% top 0px; left: 0px; top: 8px; opacity: 1;">
+            <div style="border-radius: 3px; background: white; position: relative; max-width: calc(100vw - 24px); box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;">
+              <div style="display: flex; flex-direction: column; min-width: 540px; max-width: calc(100vw - 24px); height: 100%; max-height: 70vh;">
+                <div class="notion-scroller vertical" style="flex-grow: 1; min-height: 0px; transform: translateZ(0px); overflow: hidden auto; margin-right: 0px; margin-bottom: 0px;">
+                  <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px; height: 38px; padding-top: 6px;">
+                    <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                      <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <div style="position: relative;">&nbsp;<div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;">
+                          Filters for
+                          <svg viewBox="0 0 14 14" class="collectionTable" style="width: 1em; height: 100%; display: inline; fill: inherit; flex-shrink: 0; backface-visibility: hidden; margin-left: 8px; margin-right: 2px; vertical-align: bottom;">
+                            <path d="M2,2.22044605e-16 L12,0 C13.1045695,7.78148667e-16 14,0.8954305 14,2 L14,12 C14,13.1045695 13.1045695,14 12,14 L2,14 C0.8954305,14 1.11632554e-15,13.1045695 0,12 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,2.22044605e-16 Z M5.75,5.67000008 L5.75,8.33000016 L12.5,8.33000016 L12.5,5.67000008 L5.75,5.67000008 Z M5.75,9.84000015 L5.75,12.5000002 L11.5,12.5000002 C12.0522847,12.5000002 12.5,12.052285 12.5,11.5000002 L12.5,9.84000015 L5.75,9.84000015 Z M1.5,5.67000008 L1.5,8.33000016 L4.25,8.33000016 L4.25,5.67000008 L1.5,5.67000008 Z M1.5,9.84000015 L1.5,11.5000002 C1.5,12.052285 1.94771525,12.5000002 2.5,12.5000002 L4.25,12.5000002 L4.25,9.84000015 L1.5,9.84000015 Z M2.5,1.5 C1.94771525,1.5 1.5,1.94771525 1.5,2.5 L1.5,4.16000009 L4.25,4.16000009 L4.25,1.5 L2.5,1.5 Z M5.75,1.5 L5.75,4.16000009 L12.5,4.16000009 L12.5,2.5 C12.5,1.94771525 12.0522847,1.5 11.5,1.5 L5.75,1.5 Z"></path>
+                          </svg>
+                          <span style="margin-left: 4px; font-weight: 600;">Show All</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="margin-left: auto; margin-right: 14px; min-width: 0px; flex-shrink: 0;">
+                      <a href="https://www.notion.so/fd8cd2d212f74c50954c11086d85997e#6593c3c178e0462897586a2ccb2b1f3a" target="_blank" rel="noopener noreferrer" style="display: block; text-decoration: none; user-select: none; cursor: pointer; color: inherit;">
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 3px; height: 32px; width: 32px; padding: 0px; margin-right: -5px; fill: rgba(55, 53, 47, 0.4);">
+                          <svg viewBox="0 0 14 14" class="help" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                            <path d="M6.3,11.2 L6.3,9.8 L7.7,9.8 L7.7,11.2 L6.3,11.2 Z M7,0 C10.864,0 14,3.136 14,7 C14,10.864 10.864,14 7,14 C3.136,14 0,10.864 0,7 C0,3.136 3.136,0 7,0 Z M7,12.6 C10.087,12.6 12.6,10.087 12.6,7 C12.6,3.913 10.087,1.4 7,1.4 C3.913,1.4 1.4,3.913 1.4,7 C1.4,10.087 3.913,12.6 7,12.6 Z M7,2.8 C8.547,2.8 9.8,4.053 9.8,5.6 C9.8,7.35 7.7,7.525 7.7,9.1 L6.3,9.1 C6.3,6.825 8.4,7 8.4,5.6 C8.4,4.83 7.77,4.2 7,4.2 C6.23,4.2 5.6,4.83 5.6,5.6 L4.2,5.6 C4.2,4.053 5.453,2.8 7,2.8 Z"></path>
+                          </svg>
+                        </div>
+                      </a></div>
+                  </div>
+                  <div>
+                    <div style="display: grid; grid-template-columns: [boolean-start] 60px [boolean-end property-start] 120px [property-end opererator-start] 110px [operator-end value-start] auto [value-end menu-start] 32px [menu-end]; grid-auto-rows: minmax(32px, auto); gap: 8px 8px; padding: 8px 8px 0px; place-items: start stretch;">
+                      <div style="font-size: 14px; line-height: 32px; color: rgb(55, 53, 47); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; justify-self: end; padding-right: 4px;">
+                        Where
+                      </div>
+                      <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: white; margin-right: 0px; max-width: 100%;">
+                        <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">
+                          <div style="display: flex; align-items: center; line-height: 1.4; min-width: 0px; font-size: 14px;">
+                            <div style="margin-right: 6px;">
+                              <svg viewBox="0 0 14 14" class="typesTitle" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                                <path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path>
+                              </svg>
+                            </div>
+                            <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">作用域</div>
+                          </div>
+                        </div>
+                        <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                          <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                        </svg>
+                      </div>
+                      <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: white; margin-right: 0px; max-width: 100%;">
+                        <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">
+                          <div style="font-size: 14px; line-height: 20px; color: rgb(55, 53, 47); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            Contains
+                          </div>
+                        </div>
+                        <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                          <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                        </svg>
+                      </div>
+                      <div style="display: flex; margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                        <div style="background: transparent; margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                          <div style="margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                            <div class="notion-focusable" style="display: flex; align-items: center; width: 100%; font-size: 14px; line-height: 20px; padding: 4px 0px 4px 6px; position: relative; border-radius: 3px; box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset, rgba(15, 15, 15, 0.1) 0px 1px 1px inset; background: rgba(242, 241, 238, 0.6); cursor: text; margin: 0px; height: 100%; transition: background 120ms ease-in 0s; min-width: 170px;">
+                              <input placeholder="Value" type="text" style="font-size: inherit; line-height: inherit; border: none; background: none; width: 100%; display: block; resize: none; padding: 0px;">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 3px; height: 32px; width: 100%; padding: 0px;">
+                        <svg viewBox="0 0 13 3" class="dots" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                          <g>
+                            <path d="M3,1.5A1.5,1.5,0,1,1,1.5,0,1.5,1.5,0,0,1,3,1.5Z"></path>
+                            <path d="M8,1.5A1.5,1.5,0,1,1,6.5,0,1.5,1.5,0,0,1,8,1.5Z"></path>
+                            <path d="M13,1.5A1.5,1.5,0,1,1,11.5,0,1.5,1.5,0,0,1,13,1.5Z"></path>
+                          </g>
+                        </svg>
+                      </div>
+                      <div style="justify-self: end;">
+                        <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: white; margin-right: 0px; max-width: 100%;">
+                          <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">And</div>
+                          <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                            <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                          </svg>
+                        </div>
+                      </div>
+                      <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: white; margin-right: 0px; max-width: 100%;">
+                        <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">
+                          <div style="display: flex; align-items: center; line-height: 1.4; min-width: 0px; font-size: 14px;">
+                            <div style="margin-right: 6px;">
+                              <svg viewBox="0 0 14 14" class="typesTitle" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                                <path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path>
+                              </svg>
+                            </div>
+                            <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">作用域</div>
+                          </div>
+                        </div>
+                        <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                          <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                        </svg>
+                      </div>
+                      <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: white; margin-right: 0px; max-width: 100%;">
+                        <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">
+                          <div style="font-size: 14px; line-height: 20px; color: rgb(55, 53, 47); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            Contains
+                          </div>
+                        </div>
+                        <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                          <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                        </svg>
+                      </div>
+                      <div style="display: flex; margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                        <div style="background: transparent; margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                          <div style="margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                            <div class="notion-focusable" style="display: flex; align-items: center; width: 100%; font-size: 14px; line-height: 20px; padding: 4px 0px 4px 6px; position: relative; border-radius: 3px; box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset, rgba(15, 15, 15, 0.1) 0px 1px 1px inset; background: rgba(242, 241, 238, 0.6); cursor: text; margin: 0px; height: 100%; transition: background 120ms ease-in 0s; min-width: 170px;">
+                              <input placeholder="Value" type="text" style="font-size: inherit; line-height: inherit; border: none; background: none; width: 100%; display: block; resize: none; padding: 0px;">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 3px; height: 32px; width: 100%; padding: 0px;">
+                        <svg viewBox="0 0 13 3" class="dots" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                          <g>
+                            <path d="M3,1.5A1.5,1.5,0,1,1,1.5,0,1.5,1.5,0,0,1,3,1.5Z"></path>
+                            <path d="M8,1.5A1.5,1.5,0,1,1,6.5,0,1.5,1.5,0,0,1,8,1.5Z"></path>
+                            <path d="M13,1.5A1.5,1.5,0,1,1,11.5,0,1.5,1.5,0,0,1,13,1.5Z"></path>
+                          </g>
+                        </svg>
+                      </div>
+                      <div style="font-size: 14px; line-height: 32px; color: rgb(55, 53, 47); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; justify-self: end; padding-right: 4px;">
+                        And
+                      </div>
+                      <div style="grid-column: property-start / value-end; background: rgba(0, 0, 0, 0.02); border-radius: 3px; box-shadow: rgba(55, 53, 47, 0.1) 0px 0px 0px 1px; margin: 1px; align-self: stretch;">
+                        <div style="display: grid; grid-template-columns: [boolean-start] 60px [boolean-end property-start] 120px [property-end opererator-start] 110px [operator-end value-start] auto [value-end menu-start] 32px [menu-end]; grid-auto-rows: minmax(32px, auto); gap: 8px 8px; padding: 8px 8px 0px; place-items: start stretch;">
+                          <div style="font-size: 14px; line-height: 32px; color: rgb(55, 53, 47); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; justify-self: end; padding-right: 4px;">
+                            Where
+                          </div>
+                          <div style="grid-column: property-start / value-end; background: rgba(0, 0, 0, 0.02); border-radius: 3px; box-shadow: rgba(55, 53, 47, 0.1) 0px 0px 0px 1px; margin: 1px; align-self: stretch;">
+                            <div style="display: grid; grid-template-columns: [boolean-start] 60px [boolean-end property-start] 120px [property-end opererator-start] 110px [operator-end value-start] auto [value-end menu-start] 32px [menu-end]; grid-auto-rows: minmax(32px, auto); gap: 8px 8px; padding: 8px 8px 0px; place-items: start stretch;">
+                              <div style="font-size: 14px; line-height: 32px; color: rgb(55, 53, 47); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; justify-self: end; padding-right: 4px;">
+                                Where
+                              </div>
+                              <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: white; margin-right: 0px; max-width: 100%;">
+                                <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">
+                                  <div style="display: flex; align-items: center; line-height: 1.4; min-width: 0px; font-size: 14px;">
+                                    <div style="margin-right: 6px;">
+                                      <svg viewBox="0 0 14 14" class="typesTitle" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                                        <path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path>
+                                      </svg>
+                                    </div>
+                                    <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">作用域
+                                    </div>
+                                  </div>
+                                </div>
+                                <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                                  <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                                </svg>
+                              </div>
+                              <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: rgb(239,239,238); margin-right: 0px; max-width: 100%;">
+                                <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">
+                                  <div style="font-size: 14px; line-height: 20px; color: rgb(55, 53, 47); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    Contains
+                                  </div>
+                                </div>
+                                <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                                  <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                                </svg>
+                              </div>
+                              <div style="display: flex; margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                                <div style="background: transparent; margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                                  <div style="margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                                    <div class="notion-focusable" style="display: flex; align-items: center; width: 100%; font-size: 14px; line-height: 20px; padding: 4px 0px 4px 6px; position: relative; border-radius: 3px; box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset, rgba(15, 15, 15, 0.1) 0px 1px 1px inset; background: rgba(242, 241, 238, 0.6); cursor: text; margin: 0px; height: 100%; transition: background 120ms ease-in 0s; min-width: 170px;">
+                                      <input placeholder="Value" type="text" style="font-size: inherit; line-height: inherit; border: none; background: none; width: 100%; display: block; resize: none; padding: 0px;">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 3px; height: 32px; width: 100%; padding: 0px;">
+                                <svg viewBox="0 0 13 3" class="dots" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                                  <g>
+                                    <path d="M3,1.5A1.5,1.5,0,1,1,1.5,0,1.5,1.5,0,0,1,3,1.5Z"></path>
+                                    <path d="M8,1.5A1.5,1.5,0,1,1,6.5,0,1.5,1.5,0,0,1,8,1.5Z"></path>
+                                    <path d="M13,1.5A1.5,1.5,0,1,1,11.5,0,1.5,1.5,0,0,1,13,1.5Z"></path>
+                                  </g>
+                                </svg>
+                              </div>
+                              <div style="justify-self: end;">
+                                <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: white; margin-right: 0px; max-width: 100%;">
+                                  <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">Or</div>
+                                  <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                                    <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                                  </svg>
+                                </div>
+                              </div>
+                              <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: white; margin-right: 0px; max-width: 100%;">
+                                <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">
+                                  <div style="display: flex; align-items: center; line-height: 1.4; min-width: 0px; font-size: 14px;">
+                                    <div style="margin-right: 6px;">
+                                      <svg viewBox="0 0 14 14" class="typesTitle" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                                        <path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path>
+                                      </svg>
+                                    </div>
+                                    <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">作用域
+                                    </div>
+                                  </div>
+                                </div>
+                                <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                                  <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                                </svg>
+                              </div>
+                              <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: white; margin-right: 0px; max-width: 100%;">
+                                <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">
+                                  <div style="font-size: 14px; line-height: 20px; color: rgb(55, 53, 47); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    Contains
+                                  </div>
+                                </div>
+                                <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                                  <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                                </svg>
+                              </div>
+                              <div style="display: flex; margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                                <div style="background: transparent; margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                                  <div style="margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                                    <div class="notion-focusable" style="display: flex; align-items: center; width: 100%; font-size: 14px; line-height: 20px; padding: 4px 0px 4px 6px; position: relative; border-radius: 3px; box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset, rgba(15, 15, 15, 0.1) 0px 1px 1px inset; background: rgba(242, 241, 238, 0.6); cursor: text; margin: 0px; height: 100%; transition: background 120ms ease-in 0s; min-width: 170px;">
+                                      <input placeholder="Value" type="text" style="font-size: inherit; line-height: inherit; border: none; background: none; width: 100%; display: block; resize: none; padding: 0px;">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 3px; height: 32px; width: 100%; padding: 0px;">
+                                <svg viewBox="0 0 13 3" class="dots" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                                  <g>
+                                    <path d="M3,1.5A1.5,1.5,0,1,1,1.5,0,1.5,1.5,0,0,1,3,1.5Z"></path>
+                                    <path d="M8,1.5A1.5,1.5,0,1,1,6.5,0,1.5,1.5,0,0,1,8,1.5Z"></path>
+                                    <path d="M13,1.5A1.5,1.5,0,1,1,11.5,0,1.5,1.5,0,0,1,13,1.5Z"></path>
+                                  </g>
+                                </svg>
+                              </div>
+                            </div>
+                            <div style="padding: 8px 0px;">
+                              <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                                <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px; height: 32px;">
+                                  <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px;">
+                                    <div style="width: 16px;">
+                                      <svg viewBox="0 0 18 18" class="plus" style="width: 100%; height: 100%; display: block; fill: rgb(46, 170, 220); flex-shrink: 0; backface-visibility: hidden;">
+                                        <polygon points="17,8 10,8 10,1 8,1 8,8 1,8 1,10 8,10 8,17 10,17 10,10 17,10 "></polygon>
+                                      </svg>
+                                    </div>
+                                  </div>
+                                  <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                                    <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                      <div style="color: rgb(46, 170, 220); fill: rgb(46, 170, 220);">Add a filter</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 3px; height: 32px; width: 100%; padding: 0px;">
+                            <svg viewBox="0 0 13 3" class="dots" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                              <g>
+                                <path d="M3,1.5A1.5,1.5,0,1,1,1.5,0,1.5,1.5,0,0,1,3,1.5Z"></path>
+                                <path d="M8,1.5A1.5,1.5,0,1,1,6.5,0,1.5,1.5,0,0,1,8,1.5Z"></path>
+                                <path d="M13,1.5A1.5,1.5,0,1,1,11.5,0,1.5,1.5,0,0,1,13,1.5Z"></path>
+                              </g>
+                            </svg>
+                          </div>
+                        </div>
+                        <div style="padding: 8px 0px;">
+                          <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                            <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px; height: 32px;">
+                              <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px;">
+                                <div style="width: 16px;">
+                                  <svg viewBox="0 0 18 18" class="plus" style="width: 100%; height: 100%; display: block; fill: rgb(46, 170, 220); flex-shrink: 0; backface-visibility: hidden;">
+                                    <polygon points="17,8 10,8 10,1 8,1 8,8 1,8 1,10 8,10 8,17 10,17 10,10 17,10 "></polygon>
+                                  </svg>
+                                </div>
+                              </div>
+                              <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                                <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                  <div style="color: rgb(46, 170, 220); fill: rgb(46, 170, 220);">
+                                    <div>Add a filter
+                                      <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: inline; fill: inherit; flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                                        <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                                      </svg>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 3px; height: 32px; width: 100%; padding: 0px;">
+                        <svg viewBox="0 0 13 3" class="dots" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                          <g>
+                            <path d="M3,1.5A1.5,1.5,0,1,1,1.5,0,1.5,1.5,0,0,1,3,1.5Z"></path>
+                            <path d="M8,1.5A1.5,1.5,0,1,1,6.5,0,1.5,1.5,0,0,1,8,1.5Z"></path>
+                            <path d="M13,1.5A1.5,1.5,0,1,1,11.5,0,1.5,1.5,0,0,1,13,1.5Z"></path>
+                          </g>
+                        </svg>
+                      </div>
+                      <div style="font-size: 14px; line-height: 32px; color: rgb(55, 53, 47); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; justify-self: end; padding-right: 4px;">
+                        And
+                      </div>
+                      <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: white; margin-right: 0px; max-width: 100%;">
+                        <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">
+                          <div style="display: flex; align-items: center; line-height: 1.4; min-width: 0px; font-size: 14px;">
+                            <div style="margin-right: 6px;">
+                              <svg viewBox="0 0 14 14" class="typesTitle" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                                <path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path>
+                              </svg>
+                            </div>
+                            <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">作用域</div>
+                          </div>
+                        </div>
+                        <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                          <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                        </svg>
+                      </div>
+                      <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; white-space: nowrap; border-radius: 3px; height: 32px; padding: 0px 8px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(55, 53, 47, 0.16); background: white; margin-right: 0px; max-width: 100%;">
+                        <div style="display: flex; min-width: 0px; color: rgb(55, 53, 47);">
+                          <div style="font-size: 14px; line-height: 20px; color: rgb(55, 53, 47); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            Contains
+                          </div>
+                        </div>
+                        <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                          <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                        </svg>
+                      </div>
+                      <div style="display: flex; margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                        <div style="background: transparent; margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                          <div style="margin: 0px; width: 100%; height: 100%; transition: background 120ms ease-in 0s;">
+                            <div class="notion-focusable" style="display: flex; align-items: center; width: 100%; font-size: 14px; line-height: 20px; padding: 4px 0px 4px 6px; position: relative; border-radius: 3px; box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset, rgba(15, 15, 15, 0.1) 0px 1px 1px inset; background: rgba(242, 241, 238, 0.6); cursor: text; margin: 0px; height: 100%; transition: background 120ms ease-in 0s; min-width: 170px;">
+                              <input placeholder="Value" type="text" style="font-size: inherit; line-height: inherit; border: none; background: none; width: 100%; display: block; resize: none; padding: 0px;">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 3px; height: 32px; width: 100%; padding: 0px;">
+                        <svg viewBox="0 0 13 3" class="dots" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.4); flex-shrink: 0; backface-visibility: hidden;">
+                          <g>
+                            <path d="M3,1.5A1.5,1.5,0,1,1,1.5,0,1.5,1.5,0,0,1,3,1.5Z"></path>
+                            <path d="M8,1.5A1.5,1.5,0,1,1,6.5,0,1.5,1.5,0,0,1,8,1.5Z"></path>
+                            <path d="M13,1.5A1.5,1.5,0,1,1,11.5,0,1.5,1.5,0,0,1,13,1.5Z"></path>
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+                    <div style="padding: 8px 0px;">
+                      <div role="button" aria-disabled="false" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                        <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px; height: 32px;">
+                          <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px;">
+                            <div style="width: 16px;">
+                              <svg viewBox="0 0 18 18" class="plus" style="width: 100%; height: 100%; display: block; fill: rgb(46, 170, 220); flex-shrink: 0; backface-visibility: hidden;">
+                                <polygon points="17,8 10,8 10,1 8,1 8,8 1,8 1,10 8,10 8,17 10,17 10,10 17,10 "></polygon>
+                              </svg>
+                            </div>
+                          </div>
+                          <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                            <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                              <div style="color: rgb(46, 170, 220); fill: rgb(46, 170, 220);">
+                                <div>Add a filter
+                                  <svg viewBox="0 0 30 30" class="chevronDown" style="width: 10px; height: 100%; display: inline; fill: inherit; flex-shrink: 0; backface-visibility: hidden; margin-left: 6px;">
+                                    <polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon>
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <footer style="flex-shrink: 0;"></footer>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="pointer-events: auto; position: relative; z-index: 1;">
+    <div>
+      <div style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh;"></div>
+      <div style="position: fixed; left: 647.531px; top: 443px; pointer-events: none;">
+        <div style="width: 120px; height: 32px;"></div>
+        <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
+          <div style="position: relative; top: 100%; pointer-events: auto;">
+            <div style="display: flex; align-items: center; position: relative; flex-direction: column-reverse; transform-origin: 50% top 0px; left: 0px; top: 0px; opacity: 1;">
+              <div style="border-radius: 3px; background: white; position: relative; max-width: calc(100vw - 24px); box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;">
+                <div style="display: flex; flex-direction: column; width: 200px; min-width: 180px; max-width: calc(100vw - 24px); height: 100%; max-height: 70vh;">
+                  <div style="flex-shrink: 0;">
+                    <div style="padding-top: 6px; padding-bottom: 6px; margin-top: 8px;">
+                      <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                        <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                          <div style="display: flex;">
+                            <div class="notion-focusable" style="display: flex; align-items: center; width: 100%; font-size: 14px; line-height: 20px; padding: 3px 6px; position: relative; border-radius: 3px; box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset, rgba(15, 15, 15, 0.1) 0px 1px 1px inset; background: rgba(242, 241, 238, 0.6); cursor: text; height: 28px;">
+                              <input placeholder="Search for a property…" type="text" style="font-size: inherit; line-height: inherit; border: none; background: none; width: 100%; display: block; resize: none; padding: 0px;">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="notion-scroller vertical" style="flex-grow: 1; min-height: 0px; transform: translateZ(0px); overflow: hidden auto; margin-right: 0px; margin-bottom: 0px;">
+                    <div>
+                      <div style="padding-top: 6px; padding-bottom: 6px;">
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px;">
+                              <svg viewBox="0 0 14 14" class="typesTitle" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.8); flex-shrink: 0; backface-visibility: hidden;">
+                                <path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path>
+                              </svg>
+                            </div>
+                            <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">作用域</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px;">
+                              <svg viewBox="0 0 14 14" class="typesSelect" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.8); flex-shrink: 0; backface-visibility: hidden;">
+                                <path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path>
+                              </svg>
+                            </div>
+                            <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">其它包</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px;">
+                              <svg viewBox="0 0 14 14" class="typesSelect" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.8); flex-shrink: 0; backface-visibility: hidden;">
+                                <path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path>
+                              </svg>
+                            </div>
+                            <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">同一包</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px;">
+                              <svg viewBox="0 0 14 14" class="typesSelect" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.8); flex-shrink: 0; backface-visibility: hidden;">
+                                <path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path>
+                              </svg>
+                            </div>
+                            <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">子孙类</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px;">
+                              <svg viewBox="0 0 14 14" class="typesSelect" style="width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.8); flex-shrink: 0; backface-visibility: hidden;">
+                                <path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path>
+                              </svg>
+                            </div>
+                            <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">当前类</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <footer style="flex-shrink: 0;"></footer>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div style="pointer-events: auto; position: relative; z-index: 1;">
+    <div>
+      <div style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh;"></div>
+      <div style="position: fixed; left: 875.531px; top: 443px; pointer-events: none;">
+        <div style="width: 110px; height: 32px;"></div>
+        <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
+          <div style="position: relative; top: 100%; pointer-events: auto;">
+            <div style="display: flex; align-items: center; position: relative; flex-direction: column-reverse; transform-origin: 50% top 0px; left: 0px; top: 0px; opacity: 1;">
+              <div style="border-radius: 3px; background: white; position: relative; max-width: calc(100vw - 24px); box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;">
+                <div style="display: flex; flex-direction: column; width: 160px; min-width: 180px; max-width: calc(100vw - 24px); height: 100%; max-height: 70vh;">
+                  <div class="notion-scroller vertical" style="flex-grow: 1; min-height: 0px; transform: translateZ(0px); overflow: hidden auto; margin-right: 0px; margin-bottom: 0px;">
+                    <div>
+                      <div style="padding-top: 6px; padding-bottom: 6px;">
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Is</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Is not</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Contains
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Does not
+                                contain
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Starts with
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ends with
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Is empty
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                            <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Is not empty
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <footer style="flex-shrink: 0;"></footer>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div style="pointer-events: auto; position: relative; z-index: 1;">
+    <div>
+      <div style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh;"></div>
+      <div style="position: fixed; left: 380.328px; top: 483px; pointer-events: none;">
+        <div style="width: 59px; height: 32px;"></div>
+        <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
+          <div style="position: relative; top: 100%; pointer-events: auto;">
+            <div style="display: flex; align-items: center; position: relative; flex-direction: column-reverse; transform-origin: 50% top 0px; left: 0px; top: 0px; opacity: 1;">
+              <div style="border-radius: 3px; background: white; position: relative; max-width: calc(100vw - 24px); box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;">
+                <div style="display: flex; flex-direction: column; width: 200px; min-width: 180px; max-width: calc(100vw - 24px); height: 100%; max-height: 70vh;">
+                  <div class="notion-scroller vertical" style="flex-grow: 1; min-height: 0px; transform: translateZ(0px); overflow: hidden auto; margin-right: 0px; margin-bottom: 0px;">
+                    <div>
+                      <div style="padding-top: 6px; padding-bottom: 6px;">
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%; background: rgba(55, 53, 47, 0.08);">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 45px; font-size: 14px; padding-top: 4px; padding-bottom: 4px;">
+                            <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">And</div>
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(55, 53, 47, 0.6); margin-top: 2px; font-size: 12px;">
+                                All filters must match
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                          <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 45px; font-size: 14px; padding-top: 4px; padding-bottom: 4px;">
+                            <div style="margin-left: 14px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Or</div>
+                              <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(55, 53, 47, 0.6); margin-top: 2px; font-size: 12px;">
+                                At least one filter must match
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <footer style="flex-shrink: 0;"></footer>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="pointer-events: auto; position: relative; z-index: 1;">
+    <div>
+      <div style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh;"></div>
+      <div style="position: fixed; left: 1197.53px; top: 493px; pointer-events: none;">
+        <div style="width: 32px; height: 32px;"></div>
+        <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
+          <div style="position: relative; top: 100%; pointer-events: auto;">
+            <div style="display: flex; align-items: center; position: relative; flex-direction: column-reverse; transform-origin: 50% top 0px; left: 0px; top: 0px; opacity: 1;">
+              <div style="border-radius: 3px; background: white; position: relative; max-width: calc(100vw - 24px); box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;">
+                <div>
+                  <div style="padding-top: 6px; padding-bottom: 6px;">
+                    <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%; background: rgba(55, 53, 47, 0.08);">
+                      <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                        <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px;">
+                          <div style="width: 16px;">
+                            <svg viewBox="0 0 30 30" class="trash" style="width: 100%; height: 100%; display: block; fill: inherit; flex-shrink: 0; backface-visibility: hidden;">
+                              <path d="M21,5c0-2.2-1.8-4-4-4h-4c-2.2,0-4,1.8-4,4H2v2h2v22h22V7h2V5H21z M13,3h4c1.104,0,2,0.897,2,2h-8C11,3.897,11.897,3,13,3zM24,27H6V7h18V27z M16,11h-2v12h2V11z M20,11h-2v12h2V11z M12,11h-2v12h2V11z"></path>
+                            </svg>
+                          </div>
+                        </div>
+                        <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                          <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Remove</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                      <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                        <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px;">
+                          <div style="width: 16px;">
+                            <svg viewBox="0 0 30 30" class="duplicate" style="width: 100%; height: 100%; display: block; fill: inherit; flex-shrink: 0; backface-visibility: hidden;">
+                              <path d="M1,29h20V9H1V29z M3,11h16v16H3V11z M9,1v6h2V3h16v16h-4v2h6V1H9z"></path>
+                            </svg>
+                          </div>
+                        </div>
+                        <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                          <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Duplicate</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                      <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 28px; font-size: 14px;">
+                        <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px;">
+                          <div style="width: 16px;">
+                            <svg viewBox="0 0 30 30" class="loop" style="width: 100%; height: 100%; display: block; fill: inherit; flex-shrink: 0; backface-visibility: hidden;">
+                              <path d="M26,16c0,3.309-2.691,6-6,6H5.813l3.594-3.594L8,17l-6,6l6,6l1.406-1.406L5.813,24H20c4.4,0,8-3.6,8-8v-1h-2V16z M4,14 c0-3.309,2.691-6,6-6h14.188l-3.594,3.594L22,13l6-6l-6-6l-1.406,1.406L24.188,6H10c-4.4,0-8,3.6-8,8v1h2V14z"></path>
+                            </svg>
+                          </div>
+                        </div>
+                        <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                          <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Turn into filter
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; width: 100%;">
+                      <div style="display: flex; align-items: center; line-height: 120%; width: 100%; user-select: none; min-height: 45px; font-size: 14px; padding-top: 4px; padding-bottom: 4px;">
+                        <div style="display: flex; align-items: center; justify-content: center; margin-left: 14px; margin-top: 1px; align-self: flex-start;">
+                          <div style="width: 16px;">
+                            <svg viewBox="0 0 30 30" class="loop" style="width: 100%; height: 100%; display: block; fill: inherit; flex-shrink: 0; backface-visibility: hidden;">
+                              <path d="M26,16c0,3.309-2.691,6-6,6H5.813l3.594-3.594L8,17l-6,6l6,6l1.406-1.406L5.813,24H20c4.4,0,8-3.6,8-8v-1h-2V16z M4,14 c0-3.309,2.691-6,6-6h14.188l-3.594,3.594L22,13l6-6l-6-6l-1.406,1.406L24.188,6H10c-4.4,0-8,3.6-8,8v1h2V14z"></path>
+                            </svg>
+                          </div>
+                        </div>
+                        <div style="margin-left: 8px; margin-right: 14px; min-width: 0px; flex: 1 1 auto;">
+                          <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Wrap in group
+                          </div>
+                          <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(55, 53, 47, 0.6); margin-top: 2px; font-size: 12px;">
+                            Create a filter group around this
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>

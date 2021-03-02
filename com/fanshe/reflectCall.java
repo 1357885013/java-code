@@ -11,24 +11,24 @@ import java.util.Properties;
 public class reflectCall {
 
     public static void main(String[] args) throws Exception {
-        //¼ÓÔØpropertiesÎÄ¼ş
+        //åŠ è½½propertiesæ–‡ä»¶
         Properties properties = new Properties();
         ClassLoader classLoader = reflectCall.class.getClassLoader();
         InputStream resource = classLoader.getResourceAsStream("./com/fanshe/reflectCall.properties");
         System.out.println(resource);
         properties.load(resource);
-        //¶ÁpropertiesÎÄ¼şµÄÊôĞÔ
+        //è¯»propertiesæ–‡ä»¶çš„å±æ€§
         String className = properties.getProperty("className");
         String method = properties.getProperty("method");
 
-        //¸ù¾İÀàÃû´´½¨Àà
+        //æ ¹æ®ç±»ååˆ›å»ºç±»
         Class<?> aClass = Class.forName(className);
-        //»ñÈ¡ÎŞ²Î¹¹Ôìº¯Êı²¢´´½¨ÊµÀı
+        //è·å–æ— å‚æ„é€ å‡½æ•°å¹¶åˆ›å»ºå®ä¾‹
         Constructor<?> constructor = aClass.getDeclaredConstructor();
         constructor.setAccessible(true);
         Object instance = constructor.newInstance();
 
-        //»ñÈ¡·½·¨²¢µ÷ÓÃ·½·¨
+        //è·å–æ–¹æ³•å¹¶è°ƒç”¨æ–¹æ³•
         Method method1 = aClass.getDeclaredMethod(method);
         method1.setAccessible(true);
         method1.invoke(instance);

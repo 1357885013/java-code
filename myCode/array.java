@@ -2,12 +2,12 @@ package myCode;
 
 class array {
     /*
-    ¶þÎ¬Êý×é
+    äºŒç»´æ•°ç»„
 
-    Êý¾ÝÀàÐÍ [] [] Êý×éÃû = new Êý¾ÝÀàÐÍ[m][n];
+    æ•°æ®ç±»åž‹ [] [] æ•°ç»„å = new æ•°æ®ç±»åž‹[m][n];
 
-    m:´ú±íµÄÊÇ¶þÎ¬Êý×éµÄ³¤¶È  Ò»Î¬Êý×éµÄ¸öÊý
-    n£º´ú±íµÄÊÇÃ¿Ò»¸öÒ»Î¬Êý×éµÄ³¤¶È
+    m:ä»£è¡¨çš„æ˜¯äºŒç»´æ•°ç»„çš„é•¿åº¦  ä¸€ç»´æ•°ç»„çš„ä¸ªæ•°
+    nï¼šä»£è¡¨çš„æ˜¯æ¯ä¸€ä¸ªä¸€ç»´æ•°ç»„çš„é•¿åº¦
     */
     public static void main(String[] args) {
         int[][] arr1;
@@ -18,7 +18,10 @@ class array {
 //        arr4 = {{2,3},{4,6},{7},{12,45,67},{100}};//error
         int[][] arr = new int[3][4];
         arr = new int[3][4];
+        System.out.println("é»˜è®¤å€¼" + arr[0][0]);
         arr = new int[3][];
+        int length1 = arr.length, length2 = arr[0].length;
+        arr = new int[length1][length2];
 //        arr = new int[][2];//error
         arr = new int[][]{{1, 2}, {2}, {3}};
 
@@ -47,10 +50,10 @@ class array {
         //int [] [] crr = {{2,3},{4,6},{7},{12,45,67},{100}};
 
 
-        //±éÀú¶þÎ¬Êý×é
+        //éåŽ†äºŒç»´æ•°ç»„
 
-        //Íâ²ãforÑ­»·¿ØÖÆÐÐ--->¶þÎ¬Êý×éµÄ³¤¶ÈÓÐ¹Ø
-        //ÄÚ²ãforÑ­»·¿ØÖÆÁÐ--->Ã¿Ò»¸öÒ»Î¬Êý×éµÄ³¤¶ÈÓÐ¹Ø
+        //å¤–å±‚forå¾ªçŽ¯æŽ§åˆ¶è¡Œ--->äºŒç»´æ•°ç»„çš„é•¿åº¦æœ‰å…³
+        //å†…å±‚forå¾ªçŽ¯æŽ§åˆ¶åˆ—--->æ¯ä¸€ä¸ªä¸€ç»´æ•°ç»„çš„é•¿åº¦æœ‰å…³
 
         for (int i = 0; i < crr.length; i++) {
             for (int j = 0; j < crr[i].length; j++) {
@@ -59,8 +62,8 @@ class array {
         }
 
 
-        for(int[] i :crr)
-            for(int j:i)
+        for (int[] i : crr)
+            for (int j : i)
                 System.out.println(j);
     }
 }

@@ -1,19 +1,19 @@
 package myCode.sync;
 /*
- * Ïß³ÌµÄËÀËøÏÖÏó
+ * çº¿ç¨‹çš„æ­»é”ç°è±¡
  *
- * Ïß³ÌÏà¹ØÀà
+ * çº¿ç¨‹ç›¸å…³ç±»
  * 	Timer
  *
  * 	Lock
  *
- *  Ïß³Ì³Ø
+ *  çº¿ç¨‹æ± 
  *
- *  Ïß³ÌÍ¨ĞÅ
+ *  çº¿ç¨‹é€šä¿¡
  *
- * Ïß³ÌÉúÃüÖÜÆÚ£¨ÖØµã£©
+ * çº¿ç¨‹ç”Ÿå‘½å‘¨æœŸï¼ˆé‡ç‚¹ï¼‰
  *
- * ThreadLocal£¨±¾µØÏß³Ì£©
+ * ThreadLocalï¼ˆæœ¬åœ°çº¿ç¨‹ï¼‰
  */
 public class DeadRunable {
 
@@ -28,25 +28,25 @@ public class DeadRunable {
 		erZiThread.start();
 	}
 	static class DeadRunnable implements Runnable {
-		//×ÊÔ´
-		private String page = "¿¼ÊÔ¾í";
-		private String toy = "Íæ¾ß";
+		//èµ„æº
+		private String page = "è€ƒè¯•å·";
+		private String toy = "ç©å…·";
 
 
 		@Override
 		public void run() {
 			if (Thread.currentThread().getName().equals("father")) {
 				synchronized (toy) {
-					System.out.println("°Ö°Ö£ºÎÒÓĞÍæ¾ß£¬ÏëÒªÊÔ¾í");
+					System.out.println("çˆ¸çˆ¸ï¼šæˆ‘æœ‰ç©å…·ï¼Œæƒ³è¦è¯•å·");
 					synchronized (page) {
-						System.out.println("°Ö°Ö£ºÎÒÓĞÁË¿¼ÊÔ¾í");
+						System.out.println("çˆ¸çˆ¸ï¼šæˆ‘æœ‰äº†è€ƒè¯•å·");
 					}
 				}
 			} else if (Thread.currentThread().getName().equals("son")) {
 				synchronized (page) {
-					System.out.println("¶ù×Ó:ÎÒÓĞÊÔ¾í£¬ÏëÒªÍæ¾ß");
+					System.out.println("å„¿å­:æˆ‘æœ‰è¯•å·ï¼Œæƒ³è¦ç©å…·");
 					synchronized (toy) {
-						System.out.println("¶ù×Ó£ºÎÒÓĞÁËÍæ¾ß");
+						System.out.println("å„¿å­ï¼šæˆ‘æœ‰äº†ç©å…·");
 					}
 				}
 			}

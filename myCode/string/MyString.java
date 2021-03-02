@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class MyString {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+        //substring 是左index到右index ,substring(1,3)就相当于把指针放在对应index的左边,然后输出指针内容.    0|12|345
         String s = "Liu JiJiang`s english name is Dettan";//基本数据类型的表现形式
         s = s.trim();
         int l = s.indexOf('e');//区分大小写，参数可以以为char，string。第二个参数可以带起始搜索位置（包含）
@@ -27,9 +27,9 @@ public class MyString {
         System.out.println("s.contains(\"liujijiang\") = " + s.contains("Liu"));
         System.out.println("s.endsWith(\"an\") = " + s.endsWith("an"));
 
-        System.out.println(s.substring(l, l + 7));//english  //包含左边不包含右边，正好左边+长度=右边
-        System.out.println(s.substring(l, l + 7));//english
-        System.out.println(s.substring(l, r + 1));//english
+        System.out.println(s.substring(2, 2 + 3));//english  //包含左边不包含右边，正好左边+长度=右边
+        System.out.println(s.substring(0, 0 + 3));//english
+        System.out.println(s.substring(5, 5 + 1));//english
 
         System.out.println();
         String[] ss = s.split("\\W");//根据正则来分割，这里相当于用空格和`来分割。

@@ -33,6 +33,7 @@ public class MyTreeSet {
 
         System.out.println("set.first() = " + set.first());
         System.out.println("set.last() = " + set.last());
+        System.out.println(set);
         System.out.println("set.higher(new Person(\"dddd\",20)) = " + set.higher(new Person("d", 50)));
         System.out.println("set.lower(new Person(\"dddd\",20)) = " + set.lower(new Person("d", 50)));
         System.out.println("set.pollFirst() = " + set.pollFirst());

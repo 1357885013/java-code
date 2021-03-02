@@ -9,42 +9,54 @@ import java.util.Arrays;
 public class NewTimeApi {
 
     @Test
-    public void testClock(){
+    public void testClock() {
         Clock c = Clock.system(ZoneId.systemDefault());
         Instant instant = c.instant();
         System.out.println("instant.toString() = " + instant.toString());
     }
+
     /**
-     * Ê±ÇøÀà
+     * æ—¶åŒºç±»
      */
     @Test
     public void testzonedDateTime() {
         System.out.println(
-                "µ±Ç°Ê±ÇøÊ±¼ä" + ZonedDateTime.now() +
-                        "\n¹¹ÔìÊ±ÇøÊ±¼ä" + ZonedDateTime.of(LocalDateTime.now(), ZoneId.of("Asia/Shanghai")) +
-                        "\nËùÓĞ¿ÉÓÃµÄÊ±Çøid" + ZoneId.getAvailableZoneIds()
+                "å½“å‰æ—¶åŒºæ—¶é—´" + ZonedDateTime.now() +
+                        "\næ„é€ æ—¶åŒºæ—¶é—´" + ZonedDateTime.of(LocalDateTime.now(), ZoneId.of("Asia/Shanghai")) +
+                        "\næ‰€æœ‰å¯ç”¨çš„æ—¶åŒºid" + ZoneId.getAvailableZoneIds()
         );
     }
 
     /**
-     * ¼ÆËãÊ±¼ä²î
+     * è®¡ç®—æ—¶é—´å·®
      */
     @Test
     public void testDTF() {
+        //åªæœ‰ æ—¶,åˆ†,ç§’ . ä¸º0ä¸æ˜¾ç¤º. å¯ä»¥ todays()
         LocalTime lt1 = LocalTime.of(22, 59, 59);
         LocalTime lt2 = LocalTime.of(0, 0, 0);
         Duration du = Duration.between(lt2, lt1);
-        System.out.println(du.toHours());//Ïà²îµÄĞ¡Ê±Êı ¿ÉÄÜÊÇ¸ºÊı
+        System.out.println(du.toHours());//ç›¸å·®çš„å°æ—¶æ•° å¯èƒ½æ˜¯è´Ÿæ•°
         System.out.println(du.getSeconds());
+        System.out.println(du.toMinutes());
+        System.out.println(du);
+
+        System.out.println("----------------------------------------");
+
+        LocalDateTime dateTime1 = LocalDateTime.of(1890, 3, 3, 3, 3, 3);
+        LocalDateTime dateTime2 = LocalDateTime.now();
+        Duration duration = Duration.between(dateTime1, dateTime2);
+        System.out.println(duration.toDays());
+        System.out.println(duration);
     }
 
     /**
-     * ¼ÆËãÊ±¼ä²î
+     * è®¡ç®—æ—¶é—´å·®
      */
     @Test
     public void testDTTF() {
-        LocalDateTime lt1 = LocalDateTime.of(2009,Month.JULY,22,12, 59, 59);
-        LocalDateTime lt2 = LocalDateTime.of(2019,Month.JULY,22,22, 59, 58);
+        LocalDateTime lt1 = LocalDateTime.of(2009, Month.JULY, 22, 12, 59, 59);
+        LocalDateTime lt2 = LocalDateTime.of(2019, Month.JULY, 22, 22, 59, 58);
         Duration du = Duration.between(lt2, lt1);
         System.out.println("du.toDays() = " + du.toDays());
         System.out.println("du.toHours() = " + du.toHours());
@@ -55,11 +67,11 @@ public class NewTimeApi {
     }
 
     /**
-     * ¸ñÊ½»¯Ê±¼ä
+     * æ ¼å¼åŒ–æ—¶é—´
      */
     @Test
     public void testFormat() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyÄêMMÔÂddÈÕ HH:mm:ss E");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyå¹´MMæœˆddæ—¥ HH:mm:ss E");
 
         LocalDateTime ldt = LocalDateTime.now();
         String strDate = ldt.format(dtf);
@@ -67,67 +79,67 @@ public class NewTimeApi {
     }
 
     /**
-     * Ã¶¾ÙµÄÔÂ·İºÍĞÇÆÚÀà
+     * æšä¸¾çš„æœˆä»½å’Œæ˜ŸæœŸç±»
      */
     @Test
     public void testMonthAndWeek() {
-        System.out.println("ÔÂ·İ£º" + Arrays.toString(Month.values()) +
-                "\nĞÇÆÚ£º" + Arrays.toString(DayOfWeek.values()) +
-                "\nÔÂ·İint×ªname:" + Month.of(3)
+        System.out.println("æœˆä»½ï¼š" + Arrays.toString(Month.values()) +
+                "\næ˜ŸæœŸï¼š" + Arrays.toString(DayOfWeek.values()) +
+                "\næœˆä»½intè½¬name:" + Month.of(3)
         );
     }
 
     /**
-     * ÄêÀà
+     * å¹´ç±»
      */
     @Test
     public void testYear() {
         Year y = Year.now();
-        System.out.println("ÌìÊı£º" + y.length() + ";ÊÇ·ñÈòÄê:" + y.isLeap() + ";Äê·İÖµ:" + y.getValue());
+        System.out.println("å¤©æ•°ï¼š" + y.length() + ";æ˜¯å¦é—°å¹´:" + y.isLeap() + ";å¹´ä»½å€¼:" + y.getValue());
 
     }
 
     /**
-     * ÈÕÆÚÀà
+     * æ—¥æœŸç±»
      */
     @Test
     public void testLocalDate() {
-        LocalDate ld = LocalDate.now();//µÈ¼ÛÓÚLocalDate.now(Clock.systemDefaultZone())
-        System.out.println("ÈÕÆÚ£º" + ld + "£»Äê£º" + ld.getYear() + "£»ÔÂ£º" + ld.getMonthValue() + "£»ÔÂÖĞÌì£º" + ld.getDayOfMonth() + "\n" +
-                "ÄêÖĞÌì:" + ld.getDayOfYear() + ";ÖÜÖĞÌì:" + ld.getDayOfWeek() + ";ÊÇ·ñÈòÄê:" + ld.isLeapYear() + ";ÔÂ·İÌìÊı:" + ld.lengthOfMonth() + "\n" +
-                ";ÄêÌìÊı:" + ld.lengthOfYear()
+        LocalDate ld = LocalDate.now();//ç­‰ä»·äºLocalDate.now(Clock.systemDefaultZone())
+        System.out.println("æ—¥æœŸï¼š" + ld + "ï¼›å¹´ï¼š" + ld.getYear() + "ï¼›æœˆï¼š" + ld.getMonthValue() + "ï¼›æœˆä¸­å¤©ï¼š" + ld.getDayOfMonth() + "\n" +
+                "å¹´ä¸­å¤©:" + ld.getDayOfYear() + ";å‘¨ä¸­å¤©:" + ld.getDayOfWeek() + ";æ˜¯å¦é—°å¹´:" + ld.isLeapYear() + ";æœˆä»½å¤©æ•°:" + ld.lengthOfMonth() + "\n" +
+                ";å¹´å¤©æ•°:" + ld.lengthOfYear()
         );
         LocalDate a = LocalDate.of(2012, 7, 2);
         LocalDate b = LocalDate.of(2012, 7, 2);
-        System.out.println("aÔÚbÖ®ºóÂğ£¿" + a.isAfter(b) + "\n" + "aÔÚbÖ®Ç°Âğ£¿" + a.isBefore(b) + "\n" + "aºÍbÍ¬Ò»ÌìÂğ£¿" + a.isEqual(b));
+        System.out.println("aåœ¨bä¹‹åå—ï¼Ÿ" + a.isAfter(b) + "\n" + "aåœ¨bä¹‹å‰å—ï¼Ÿ" + a.isBefore(b) + "\n" + "aå’ŒbåŒä¸€å¤©å—ï¼Ÿ" + a.isEqual(b));
     }
 
     /**
-     * Ê±¼äÀà
+     * æ—¶é—´ç±»
      */
     @Test
     public void testLocalTime() {
         LocalTime lt = LocalTime.now();
-        System.out.println("µ±Ç°Ê±¼äµ½ºÁÃë" + lt + "£»Ê±¼ä" + lt.getHour() + "£º" + lt.getMinute() + "£º" + lt.getSecond() + "." + lt.getNano());
+        System.out.println("å½“å‰æ—¶é—´åˆ°æ¯«ç§’" + lt + "ï¼›æ—¶é—´" + lt.getHour() + "ï¼š" + lt.getMinute() + "ï¼š" + lt.getSecond() + "." + lt.getNano());
     }
 
     /**
-     * ÈÕÆÚºÍÊ±¼äÀà
+     * æ—¥æœŸå’Œæ—¶é—´ç±»
      */
     @Test
     public void testLocalDateTime() {
         LocalDateTime ldt = LocalDateTime.now();
-        System.out.println("µ±Ç°ÈÕÆÚÊ±¼ä" + ldt + "£»Äê£º" + ldt.getYear() + "£»ÔÂ£º" + ldt.getMonthValue() + "£»ÈÕ£º" + ldt.getDayOfMonth() + "£»Ê±¼ä" + ldt.getHour() + "£º" + ldt.getMinute() + "£º" + ldt.getSecond() + "." + ldt.getNano());
+        System.out.println("å½“å‰æ—¥æœŸæ—¶é—´" + ldt + "ï¼›å¹´ï¼š" + ldt.getYear() + "ï¼›æœˆï¼š" + ldt.getMonthValue() + "ï¼›æ—¥ï¼š" + ldt.getDayOfMonth() + "ï¼›æ—¶é—´" + ldt.getHour() + "ï¼š" + ldt.getMinute() + "ï¼š" + ldt.getSecond() + "." + ldt.getNano());
 
     }
 
     /**
-     * ÃëÀà
+     * ç§’ç±»
      */
     @Test
     public void testInstant() {
         Instant is = Instant.now();
-        System.out.println("1970-01-01µ½ÏÖÔÚµÄÃë" + is.getEpochSecond() + "==ºÁÃë==" + is.toEpochMilli());
+        System.out.println("1970-01-01åˆ°ç°åœ¨çš„ç§’" + is.getEpochSecond() + "==æ¯«ç§’==" + is.toEpochMilli());
     }
 }
 

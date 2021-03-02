@@ -1,4 +1,4 @@
-package myCode;
+import java.util.Arrays;
 
 public class Char {
     public static void main(String[] args) {
@@ -6,10 +6,10 @@ public class Char {
         System.out.println("c = " + c); //c = {
         byte b1 = 10;
         byte b2 = 20;
-        int b3 = b1+b2;//错误: 不兼容的类型: 从int转换到byte可能会有损失
+        int b3 = b1 + b2;//错误: 不兼容的类型: 从int转换到byte可能会有损失
         System.out.println(b3);
         c = '9';
-        System.out.println("c = " + (int)c); //c = {
+        System.out.println("c = " + (int) c); //c = {
 
         System.out.println("Character.getNumericValue('a') = " + Character.getNumericValue('a'));
 
@@ -25,5 +25,10 @@ public class Char {
         char cNumber2 = '3';
         int number2 = cNumber2 - '0';
         System.out.println("Char " + cNumber2 + " to number is:" + number2);
+
+        String split = "123哈喽";
+        char[] splits = split.toCharArray();
+        System.out.println(Arrays.toString(splits));
     }
+
 }

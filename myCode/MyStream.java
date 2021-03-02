@@ -6,18 +6,18 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
-/*  Stream£ºÁ÷Ê½±à³Ì  ¼ò»¯¼¯ºÏ²Ù×÷ */
+/*  Streamï¼šæµå¼ç¼–ç¨‹  ç®€åŒ–é›†åˆæ“ä½œ */
 public class MyStream {
 
     public static void main(String[] args) {
         new Thread(
                 () -> {
                     System.out.println("hello");
-                    System.out.println("µíÉ½ºş");
+                    System.out.println("æ·€å±±æ¹–");
                 }
         ).start();
 
-        int aaa = 10;//¾Ö²¿±äÁ¿ÔÚÄäÃûÄÚ²¿ÀàÖĞ¿ÉÒÔÊ¹ÓÃ£¬µ«ÊÇÄ¬ÈÏ¾ÍÊÇfinal
+        int aaa = 10;//å±€éƒ¨å˜é‡åœ¨åŒ¿åå†…éƒ¨ç±»ä¸­å¯ä»¥ä½¿ç”¨ï¼Œä½†æ˜¯é»˜è®¤å°±æ˜¯final
         TreeSet<Person> set = new TreeSet<Person>(
                 (p1, p2) -> {
                     int result;
@@ -45,27 +45,27 @@ public class MyStream {
 
         Stream<Person> stream = list2.stream();
 
-        stream.filter((p) -> {
-            return p.getAge() > 13;
-        }).forEach((p) -> System.out.println(p.getName() + " " + p.getAge()));
-//        System.out.println("stream.count() = " + stream.count());
+//        stream.filter((p) -> {
+//            return p.getAge() > 13;
+//        }).forEach((p) -> System.out.println(p.getName() + " " + p.getAge()));
+        stream.filter((p) -> p.getAge() > 13).forEach(person -> System.out.println(person.getAge()));
 
+        list2.stream().map((a) -> a.getAge()).forEach(age -> System.out.print(age + " "));
+        list2.stream().map(Person::getAge).forEach(System.out::println);     //æ–¹æ³•å¼•ç”¨ï¼Œmethod referenceï¼Ÿï¼Ÿï¼Ÿ  todo
 
-        list2.stream().map((a) -> a.getAge()).forEach(age -> System.out.println(age));
-        list2.stream().map(Person::getAge).forEach(System.out::println);     //·½·¨ÒıÓÃ£¬method reference£¿£¿£¿  todo
-
-        list2.stream().parallel().forEach(System.out::println); //²¢ĞĞ¼ÆËã¡£ Ö»ÓĞÒ»¸öfindAny()µÄ½á¹û»áÊÜÓ°Ïì¡£
+        list2.stream().parallel().forEach(System.out::println); //å¹¶è¡Œè®¡ç®—ã€‚ åªæœ‰ä¸€ä¸ªfindAny()çš„ç»“æœä¼šå—å½±å“ã€‚
 
         Stream.of("one", "two", "three", "four")
                 .filter(e -> e.length() > 2)
                 .peek(e -> System.out.println("Filtered value: " + e))
                 .map(String::toUpperCase)
                 .peek(e -> System.out.println("Mapped value: " + e))
-                .collect(toList());
+                .collect(Collectors.toList());
 
-        list2.stream().sorted((a, b) -> a.getAge() - b.getAge()).skip(2).forEach(p -> System.out.println(p));
+        list2.stream().sorted(Comparator.comparingInt(Person::getAge)).skip(2).forEach(p -> System.out.println(p));
         System.out.println("-----");
         list2.stream().sorted((a, b) -> a.getAge() - b.getAge()).limit(3).forEach(p -> System.out.println(p));
+        list2.stream().max(Comparator.comparingInt(Person::getAge)).get().getAge();
 
         String[] words = {"Hello", "World"};
         Arrays.stream(words)     //imported
@@ -126,6 +126,23 @@ public class MyStream {
 
         // stream.map((p) -> p.getName()).forEach((s) -> System.out.println(s));
 
+        System.out.println("å°†å¹´é¾„åŠ 3");
+//        List<Person> result = list2.stream().map(person -> {
+//            person.setAge(person.getAge() + 3);
+//            return person;
+//        }).collect(toList());
+        List<Person> result = list2.stream().peek(person -> person.setAge(person.getAge() + 3)).collect(toList());
+        System.out.println(Arrays.toString(list2.toArray()));
+        System.out.println(Arrays.toString(result.toArray()));
+
+        System.out.println("çº¦å½’æ“ä½œ");
+        List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6, 0, 23);
+        System.out.println(nums.stream().reduce(Integer::sum));
+        System.out.println(nums.stream().reduce((a, b) -> a * b));
+        System.out.println(nums.stream().reduce(Integer::max));
+        Map<String, Person> collect = list2.stream().collect(toMap(Person::getName, p -> p));
+        System.out.println("å¹´é¾„æœ€å¤§çš„äºº");
+        System.out.println(list2.stream().reduce((left, now) -> left.getAge() > now.getAge() ? left : now));
     }
 }
 
@@ -146,12 +163,15 @@ class Person {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public int getAge() {
         return age;
     }
+
     public void setAge(int age) {
         this.age = age;
     }
