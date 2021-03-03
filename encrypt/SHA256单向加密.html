@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>使用jsencrypt执行OpenSSL的RSA加密，解密</title>
+</head>
+<script src="./sha256.js"></script>
+<script type="text/javascript">
+    var mac = '28:D1:27:13:2F:01'
+    var time = Math.floor(Math.random() * (999999999999999 - 100000000000000 + 1)) + 100000000000000
+    // time="1810335910263774743"
+    console.log(time)
+    var code = 954178
+    var mixCode = mix(mac, time, code);
+    console.log(mixCode);
+
+    function mix(mac, random, code) {
+        console.log(Math.pow(code, 2));
+        time = (random - Math.pow(code, 2))
+        console.log(time)
+        var timeS = (time).toString()
+        time += time % ((parseInt(timeS.substring(timeS.length - 2))) + code)
+        console.log(time)
+        time = Math.abs(time)
+
+        timeS = (time).toString()
+        console.log(timeS)
+        timeS = timeS.substr(timeS.length - 6, 6)
+        console.log(timeS)
+        var split = timeS.split('')
+        var result = ''
+        for (var s in split) {
+            var ss = parseInt(split[s])
+            while (ss > mac.length) {
+                ss -= mac.length
+            }
+            result += (mac.substring(ss, ss + 1))
+        }
+        console.log(result)
+        return result;
+    }
+
+    console.log(sha256_digest('123123'))
+</script>
+
+</html>

@@ -1,4 +1,4 @@
-package com;
+package log;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -12,7 +12,7 @@ public class MyLog4j {
         Logger logger = Logger.getLogger("MyLog4j");
 
         //使用配置信息
-        PropertyConfigurator.configure("com/log4j.properties");
+        PropertyConfigurator.configure("log/log4j.properties");
 
         //打印日志信息
         logger.debug("debug信息");
