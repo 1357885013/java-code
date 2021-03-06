@@ -1,11 +1,8 @@
-package com.fanshe;
+package fanshe;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.net.URL;
 import java.util.Properties;
 
 public class reflectCall {
@@ -14,7 +11,7 @@ public class reflectCall {
         //加载properties文件
         Properties properties = new Properties();
         ClassLoader classLoader = reflectCall.class.getClassLoader();
-        InputStream resource = classLoader.getResourceAsStream("./com/fanshe/reflectCall.properties");
+        InputStream resource = classLoader.getResourceAsStream("fanshe/reflectCall.properties");
         System.out.println(resource);
         properties.load(resource);
         //读properties文件的属性

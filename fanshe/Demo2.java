@@ -1,4 +1,6 @@
-package com.fanshe;
+package fanshe;
+
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -8,6 +10,11 @@ import java.util.Arrays;
 
 public class Demo2 {
 
+    @Test
+    public void test2() {
+        int[] a = new int[]{1, 2, 3, 4};
+        System.out.println("a.getClass().getTypeName() = " + a.getClass().getTypeName());
+    }
     public static void main(String[] args) throws Exception, SecurityException {
         // TODO Auto-generated method stub
         //获取该类的类类型
@@ -15,7 +22,7 @@ public class Demo2 {
 
         Class c = Student.class;
           c = student.getClass();
-          c = Class.forName("com.fanshe.Student");
+          c = Class.forName("fanshe.Student");
 
         Method[] methods = c.getMethods();
         Method[] declareMethods = c.getDeclaredMethods();  //只有自己亲自写的函数，不包含继承的。。
