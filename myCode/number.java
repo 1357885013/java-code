@@ -1,3 +1,4 @@
+package myCode;
 
 public class number {
     public static void main(String[] args) {
@@ -23,5 +24,9 @@ public class number {
         System.out.println("vFloat = " + vFloat);
         a /= bF;
         System.out.println("a = " + a);
+
+        System.out.println(4&4);
+        System.out.println((short)12&(short)4);
+        System.out.println(8&4);
     }
 }

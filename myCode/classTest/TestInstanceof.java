@@ -26,7 +26,12 @@ public class TestInstanceof {
 }
 
 abstract class Animal {
-    abstract void eat();
+    protected abstract void eat();
+
+    static void testStatic() {
+        System.out.println("fuck");
+    }
+
 }
 
 class Cat extends Animal {

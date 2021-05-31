@@ -1,0 +1,12 @@
+
+0iinsert into e4(word,meaning) value('jkldlf<Tab>i',jkwi'jk$a'jklr;j
+
+0iinsert into e4(word,meaning) value('jklf i',jklwi'jk$a');jkj
+
+0iinsert into e6(word,meaning) value('jklf i',jklwi'jk$a');jkj
+
+0iinsert into e8(word,meaning) value('jklf i',jklwi'jk$a');jkj
+
+0iinsert into eg(word,meaning) value('jklf i',jklwi'jk$a');jkj
+
+0ea    <Esc>Jj
