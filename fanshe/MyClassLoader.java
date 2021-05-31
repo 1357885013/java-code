@@ -1,4 +1,4 @@
-package com.fanshe;
+package fanshe;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

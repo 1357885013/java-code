@@ -1,12 +1,27 @@
-package myCode.date;
+package date;
 
 import org.junit.jupiter.api.Test;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Arrays;
+import java.util.TimeZone;
 
 public class NewTimeApi {
+    /**
+     * 获取某月的最后一天
+     */
+    @Test
+    public void lastDayOfMonth() {
+        LocalDate today = LocalDate.now();
+        //本月的第一天
+        LocalDate firstday = LocalDate.of(today.getYear(), today.getMonth(), 1);
+        //本月的最后一天
+        LocalDate lastDay = today.with(TemporalAdjusters.lastDayOfMonth());
+        System.out.println("本月的第一天" + firstday);
+        System.out.println("本月的最后一天" + lastDay);
+    }
 
     @Test
     public void testClock() {
@@ -141,6 +156,25 @@ public class NewTimeApi {
         Instant is = Instant.now();
         System.out.println("1970-01-01到现在的秒" + is.getEpochSecond() + "==毫秒==" + is.toEpochMilli());
     }
+
+    /**
+     * 毫秒 to 时间
+     */
+    @Test
+    public void testInstantToTime() {
+        long millis = System.currentTimeMillis();
+        LocalDateTime.ofInstant(Instant.ofEpochMilli(millis), ZoneId.of("Asia/ShangHai"));
+    }
+
+    /**
+     * 毫秒 to 时间
+     */
+    @Test
+    public void testTimeToInstant() {
+        long l = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+    }
+
+
 }
 
 

@@ -18,7 +18,7 @@ public class MyStream {
         ).start();
 
         int aaa = 10;//局部变量在匿名内部类中可以使用，但是默认就是final
-        TreeSet<Person> set = new TreeSet<Person>(
+        TreeSet<Person> set = new TreeSet<>(
                 (p1, p2) -> {
                     int result;
                     result = p1.getAge() - p2.getAge();
@@ -30,7 +30,7 @@ public class MyStream {
                 }
         );
 
-        List<Person> list2 = new ArrayList<Person>();
+        List<Person> list2 = new ArrayList<>();
 
         Person p1 = new Person("jack", 20);
         Person p2 = new Person("rose", 12);
@@ -55,17 +55,19 @@ public class MyStream {
 
         list2.stream().parallel().forEach(System.out::println); //并行计算。 只有一个findAny()的结果会受影响。
 
-        Stream.of("one", "two", "three", "four")
-                .filter(e -> e.length() > 2)
+        //取出长度大于3的字符串存成新list
+        List<String> collect1 = Stream.of("one", "two", "three", "four")
+                .filter(e -> e.length() > 3)
                 .peek(e -> System.out.println("Filtered value: " + e))
                 .map(String::toUpperCase)
                 .peek(e -> System.out.println("Mapped value: " + e))
-                .collect(Collectors.toList());
+                .collect(toList());
 
-        list2.stream().sorted(Comparator.comparingInt(Person::getAge)).skip(2).forEach(p -> System.out.println(p));
+        list2.stream().sorted(Comparator.comparingInt(Person::getAge)).skip(2).forEach(System.out::println);
+        list2.stream().sorted((a, b) -> a.getAge() - b.getAge()).skip(2).forEach(System.out::println);
         System.out.println("-----");
-        list2.stream().sorted((a, b) -> a.getAge() - b.getAge()).limit(3).forEach(p -> System.out.println(p));
-        list2.stream().max(Comparator.comparingInt(Person::getAge)).get().getAge();
+        list2.stream().sorted((a, b) -> a.getAge() - b.getAge()).limit(3).forEach(System.out::println);
+        int age = list2.stream().max(Comparator.comparingInt(Person::getAge)).get().getAge();
 
         String[] words = {"Hello", "World"};
         Arrays.stream(words)     //imported
@@ -163,15 +165,12 @@ class Person {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public int getAge() {
         return age;
     }
-
     public void setAge(int age) {
         this.age = age;
     }
@@ -202,10 +201,7 @@ class Person {
         if (age != other.age)
             return false;
         if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        return true;
+            return other.name == null;
+        } else return name.equals(other.name);
     }
 }
