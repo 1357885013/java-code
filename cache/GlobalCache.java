@@ -1,7 +1,8 @@
 package cache;
 
 
-import commonTestResource.User;
+
+import ljj.common.User;
 
 import java.util.Date;
 import java.util.HashMap;

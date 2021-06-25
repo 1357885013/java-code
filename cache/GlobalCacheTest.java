@@ -1,6 +1,6 @@
 package cache;
 
-import commonTestResource.User;
+import ljj.common.User;
 import org.junit.jupiter.api.Test;
 
 public class GlobalCacheTest {

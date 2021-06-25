@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>使用jsencrypt执行OpenSSL的RSA加密，解密</title>
+</head>
+<script src="./jsencrypt.js"></script>
+<script type="text/javascript">
+    var publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqVC1RPDPioyQ3Fh9DjIs5Rpd+dRCqCyL6m/rpW5u9Jn2w493KUWH1FBcBsl2F/0Q7p0DZFIpGzz2BUxHYY7GcwkrPFYrX3JbIhkKAgpnRJ2WGinaIv4MMMINUw4vKPiIkCXj9em7NIxy5S4yJ6L8WWJ7f9Lv5Z5K0Gl+l7a4OtQIDAQAB"
+    var ljj.encrypt = new JSEncrypt()
+    encrypt.setPublicKey(publicKey)
+    console.log(encrypt.encrypt('123123'))
+</script>
+
+</html>
