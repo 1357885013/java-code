@@ -1,4 +1,4 @@
-package myCode.proxy;
+package ljj.base.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

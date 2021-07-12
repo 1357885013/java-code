@@ -1,4 +1,4 @@
-package myCode.proxy;
+package ljj.base.proxy;
 
 import javax.xml.ws.RequestWrapper;
 
